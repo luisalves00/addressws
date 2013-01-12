@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.tamarillo.addressws.controller;
 
 import java.util.logging.Logger;
@@ -14,40 +31,62 @@ import javax.persistence.EntityManager;
 import org.tamarillo.addressws.model.Member;
 
 // The @Stateful annotation eliminates the need for manual transaction demarcation
+/**
+ * The Class MemberRegistration.
+ */
 @Stateful
-// The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
+// The @Model stereotype is a convenience mechanism to make this a
+// request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
 public class MemberRegistration {
 
-   @Inject
-   private Logger log;
+	/** The log. */
+	@Inject
+	private Logger log;
 
-   @Inject
-   private EntityManager em;
+	/** The em. */
+	@Inject
+	private EntityManager em;
 
-   @Inject
-   private Event<Member> memberEventSrc;
+	/** The member event src. */
+	@Inject
+	private Event<Member> memberEventSrc;
 
-   private Member newMember;
+	/** The new member. */
+	private Member newMember;
 
-   @Produces
-   @Named
-   public Member getNewMember() {
-      return newMember;
-   }
+	/**
+	 * Gets the new member.
+	 * 
+	 * @return the new member
+	 */
+	@Produces
+	@Named
+	public Member getNewMember() {
+		return newMember;
+	}
 
-   public void register() throws Exception {
-      log.info("Registering " + newMember.getName());
-      em.persist(newMember);
-      memberEventSrc.fire(newMember);
-      initNewMember();
-   }
+	/**
+	 * Register.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
+	public void register() throws Exception {
+		log.info("Registering " + newMember.getName());
+		em.persist(newMember);
+		memberEventSrc.fire(newMember);
+		initNewMember();
+	}
 
-   @PostConstruct
-   public void initNewMember() {
-      newMember = new Member();
-   }
+	/**
+	 * Inits the new member.
+	 */
+	@PostConstruct
+	public void initNewMember() {
+		newMember = new Member();
+	}
 }
