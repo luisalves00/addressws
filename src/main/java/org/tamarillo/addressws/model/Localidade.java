@@ -19,16 +19,15 @@ package org.tamarillo.addressws.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -36,35 +35,30 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.tamarillo.addressws.xml.util.TimestampAdapter;
 
 /**
- * The Class Distrito.
+ * The Class Localidade.
  */
 @Entity
-@Table(name = "Distrito", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
-@NamedQueries({ @NamedQuery(name = "Distrito.findAll", query = "SELECT d FROM Distrito d"),
-		@NamedQuery(name = "Distrito.findById", query = "SELECT d FROM Distrito d WHERE d.id = :id"),
-		@NamedQuery(name = "Distrito.findByName", query = "SELECT d FROM Distrito d WHERE d.name = :name"),
-		@NamedQuery(name = "Distrito.findByLikeName", query = "SELECT d FROM Distrito d WHERE d.name LIKE :name") })
+@Table(name = "Localidade")
+@NamedQueries({ @NamedQuery(name = "Localidade.findAll", query = "SELECT c FROM Localidade c"),
+		@NamedQuery(name = "Localidade.findByLikeName", query = "SELECT c FROM Localidade c WHERE c.name LIKE :name") })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Distrito")
-public class Distrito implements IEntity, Serializable {
+@XmlType(name = "Localidade")
+public class Localidade implements IEntity, Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -2685556051200336081L;
+	private static final long serialVersionUID = 5712355616301529260L;
 
-	/** The id. */
-	@Id
-	@Column(name = "id")
-	@NotNull
-	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
-	// missing regexp
-	private String id;
+	/** The Localidade pk. */
+	@EmbeddedId
+	protected LocalidadePK id;
 
 	/** The name. */
 	@NotNull
@@ -72,6 +66,13 @@ public class Distrito implements IEntity, Serializable {
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	@Column(name = "name")
 	private String name;
+
+	/** The name. */
+	@NotNull
+	@Size(min = 1, max = 50)
+	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Column(name = "name")
+	private String arteriaName;
 
 	/** The version. */
 	@Version
@@ -84,16 +85,24 @@ public class Distrito implements IEntity, Serializable {
 	/* ******** Relationship *********** */
 	/* ********************************* */
 
-	/** The concelhos. */
-	@OneToMany(mappedBy = "distrito")
-	public Set<Concelho> concelhos;
+	/** The distrito. */
+	@ManyToOne
+	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+	@XmlTransient
+	private Distrito distrito;
+
+	/** The distrito. */
+	@ManyToOne
+	@JoinColumn(name = "id_concelho", insertable = false, updatable = false)
+	@XmlTransient
+	private Concelho concelho;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.tamarillo.addressws.model.IEntity#getId()
 	 */
-	public String getId() {
+	public LocalidadePK getId() {
 		return id;
 	}
 
@@ -103,7 +112,7 @@ public class Distrito implements IEntity, Serializable {
 	 * @param id
 	 *            the id
 	 */
-	public void setId(String id) {
+	public void setId(LocalidadePK id) {
 		this.id = id;
 	}
 
@@ -127,6 +136,21 @@ public class Distrito implements IEntity, Serializable {
 	}
 
 	/**
+	 * @return the arteriaName
+	 */
+	public String getArteriaName() {
+		return arteriaName;
+	}
+
+	/**
+	 * @param arteriaName
+	 *            the arteriaName to set
+	 */
+	public void setArteriaName(String arteriaName) {
+		this.arteriaName = arteriaName;
+	}
+
+	/**
 	 * Gets the version.
 	 * 
 	 * @return the version
@@ -136,22 +160,37 @@ public class Distrito implements IEntity, Serializable {
 	}
 
 	/**
-	 * Gets the concelhos.
+	 * Gets the distrito.
 	 * 
-	 * @return the concelhos
+	 * @return the distrito
 	 */
-	public Set<Concelho> getConcelhos() {
-		return concelhos;
+	public Distrito getDistrito() {
+		return distrito;
 	}
 
 	/**
-	 * Sets the concelhos.
+	 * Sets the distrito.
 	 * 
-	 * @param concelhos
-	 *            the concelhos
+	 * @param distrito
+	 *            the distrito
 	 */
-	public void setConcelhos(Set<Concelho> concelhos) {
-		this.concelhos = concelhos;
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
+	/**
+	 * @return the concelho
+	 */
+	public Concelho getConcelho() {
+		return concelho;
+	}
+
+	/**
+	 * @param concelho
+	 *            the concelho to set
+	 */
+	public void setConcelho(Concelho concelho) {
+		this.concelho = concelho;
 	}
 
 	/*
@@ -180,10 +219,10 @@ public class Distrito implements IEntity, Serializable {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Distrito)) {
+		if (!(obj instanceof Localidade)) {
 			return false;
 		}
-		Distrito other = (Distrito) obj;
+		Localidade other = (Localidade) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -201,7 +240,7 @@ public class Distrito implements IEntity, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Distrito [id=" + id + "]";
+		return "Localidade [id=" + id + "]";
 	}
 
 }

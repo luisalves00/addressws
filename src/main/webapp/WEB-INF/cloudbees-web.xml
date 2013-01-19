@@ -3,9 +3,9 @@
 
 	<!-- DataSources (use names referenced via <resource-ref> in WEB-INF/web.xml) -->
 	<resource name="jdbc/ptaddress" auth="Container" type="javax.sql.DataSource">
-		<param name="username" value="${db_username}" />
-		<param name="password" value="${db_password}" />
-		<param name="url" value="${db_url}" />
+		<param name="username" value="${db.username}" />
+		<param name="password" value="${db.password}" />
+		<param name="url" value="${db.url}" />
 		<param name="validationQuery" value="SELECT 1" />
 		<param name="testOnBorrow" value="true" />
 		<param name="validationInterval" value="15000" />
