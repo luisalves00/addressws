@@ -21,8 +21,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -63,7 +65,6 @@ public class Distrito implements IEntity, Serializable {
 	@Column(name = "id")
 	@NotNull
 	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
-	// missing regexp
 	private String id;
 
 	/** The name. */
@@ -85,7 +86,7 @@ public class Distrito implements IEntity, Serializable {
 	/* ********************************* */
 
 	/** The concelhos. */
-	@OneToMany(mappedBy = "distrito")
+	@OneToMany(mappedBy = "distrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public Set<Concelho> concelhos;
 
 	/*

@@ -23,6 +23,7 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -85,7 +86,7 @@ public class Concelho implements IEntity, Serializable {
 	/* ********************************* */
 
 	/** The distrito. */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
 	@XmlTransient
 	private Distrito distrito;

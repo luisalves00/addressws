@@ -30,7 +30,6 @@ public class LocalidadePK {
 	@Column(name = "id_distrito")
 	@NotNull
 	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
-	// missing regexp
 	private String idDistrito;
 
 	/** The id concelho. */
