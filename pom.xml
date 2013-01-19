@@ -121,13 +121,8 @@
 		</dependency>
 
 		<!-- Lucene -->
-		<!--  
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-core</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.apache.lucene</groupId> <artifactId>lucene-core</artifactId> 
+			<version>4.0.0</version> </dependency> -->
 
 		<!-- Quartz -->
 		<!-- <dependency> <groupId>org.quartz-scheduler</groupId> <artifactId>quartz</artifactId> 
@@ -139,8 +134,11 @@
 			<artifactid>bootstrap-ui</artifactid> <version>4.3.0-SNAPSHOT</version> </dependency> -->
 
 		<!-- Mysql Connector -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.1.21</version> </dependency> -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
 
 		<!-- Needed for running tests (you may also use TestNG) -->
 		<dependency>
