@@ -23,6 +23,9 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,6 +36,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -82,21 +86,19 @@ public class Localidade implements IEntity, Serializable {
 	/* ******** Relationship *********** */
 	/* ********************************* */
 
-	// /** The distrito. */
-	// @ManyToOne
-	// @JoinColumn(name = "id_distrito", insertable = false, updatable = false)
-	// @XmlTransient
-	// private Distrito distrito;
-	//
-	// /** The distrito. */
-	// @ManyToOne
-	// /** The concelho. */
-	// @JoinColumns({ @JoinColumn(name = "id_distrito", insertable = false,
-	// updatable = false),
-	// @JoinColumn(name = "id_concelho", insertable = false, updatable = false)
-	// })
-	// @XmlTransient
-	// private Concelho concelho;
+	/** The distrito. */
+	@ManyToOne
+	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+	@XmlTransient
+	private Distrito distrito;
+
+	/** The distrito. */
+	@ManyToOne
+	/** The concelho. */
+	@JoinColumns({ @JoinColumn(name = "id_distrito", insertable = false, updatable = false),
+			@JoinColumn(name = "id_concelho", insertable = false, updatable = false) })
+	@XmlTransient
+	private Concelho concelho;
 
 	/*
 	 * (non-Javadoc)
@@ -160,39 +162,39 @@ public class Localidade implements IEntity, Serializable {
 		return version;
 	}
 
-	// /**
-	// * Gets the distrito.
-	// *
-	// * @return the distrito
-	// */
-	// public Distrito getDistrito() {
-	// return distrito;
-	// }
-	//
-	// /**
-	// * Sets the distrito.
-	// *
-	// * @param distrito
-	// * the distrito
-	// */
-	// public void setDistrito(Distrito distrito) {
-	// this.distrito = distrito;
-	// }
-	//
-	// /**
-	// * @return the concelho
-	// */
-	// public Concelho getConcelho() {
-	// return concelho;
-	// }
-	//
-	// /**
-	// * @param concelho
-	// * the concelho to set
-	// */
-	// public void setConcelho(Concelho concelho) {
-	// this.concelho = concelho;
-	// }
+	/**
+	 * Gets the distrito.
+	 * 
+	 * @return the distrito
+	 */
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	/**
+	 * Sets the distrito.
+	 * 
+	 * @param distrito
+	 *            the distrito
+	 */
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
+	/**
+	 * @return the concelho
+	 */
+	public Concelho getConcelho() {
+		return concelho;
+	}
+
+	/**
+	 * @param concelho
+	 *            the concelho to set
+	 */
+	public void setConcelho(Concelho concelho) {
+		this.concelho = concelho;
+	}
 
 	/*
 	 * (non-Javadoc)

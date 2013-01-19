@@ -17,6 +17,8 @@
 
 package org.tamarillo.addressws.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -24,7 +26,10 @@ import javax.validation.constraints.Pattern;
 /**
  * The Class LocalidadePK.
  */
-public class LocalidadePK {
+public class LocalidadePK implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 4653139578894063964L;
 
 	/** The id distrito. */
 	@Column(name = "id_distrito")
