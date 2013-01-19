@@ -81,7 +81,7 @@ public class Concelho implements IEntity, Serializable {
 	private Timestamp version;
 
 	/* ********************************* */
-	/* ******** Relationship************ */
+	/* ******** Relationship *********** */
 	/* ********************************* */
 
 	/** The distrito. */

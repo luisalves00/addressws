@@ -61,7 +61,10 @@ public class Distrito implements IEntity, Serializable {
 	/** The id. */
 	@Id
 	@Column(name = "id")
-	private Integer id;
+	@NotNull
+	@Size(min = 2, max = 2)
+	// missing regexp
+	private String id;
 
 	/** The name. */
 	@NotNull
@@ -78,7 +81,7 @@ public class Distrito implements IEntity, Serializable {
 	private Timestamp version;
 
 	/* ********************************* */
-	/* ******** Relationship************ */
+	/* ******** Relationship *********** */
 	/* ********************************* */
 
 	/** The concelhos. */
@@ -90,7 +93,7 @@ public class Distrito implements IEntity, Serializable {
 	 * 
 	 * @see org.tamarillo.addressws.model.IEntity#getId()
 	 */
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -100,7 +103,7 @@ public class Distrito implements IEntity, Serializable {
 	 * @param id
 	 *            the id
 	 */
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

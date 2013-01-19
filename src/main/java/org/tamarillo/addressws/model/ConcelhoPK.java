@@ -22,6 +22,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -37,17 +38,20 @@ import javax.xml.bind.annotation.XmlType;
 public class ConcelhoPK implements Serializable {
 
 	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -1132136995494926673L;
+	private static final long serialVersionUID = 3955259818700681326L;
 
 	/** The id distrito. */
 	@Column(name = "id_distrito")
 	@NotNull
-	private long idDistrito;
+	@Size(min = 2, max = 2)
+	// missing regexp
+	private String idDistrito;
 
 	/** The id concelho. */
 	@NotNull
 	@Column(name = "id_concelho")
-	private long idConcelho;
+	@Size(min = 2, max = 2)
+	private String idConcelho;
 
 	/**
 	 * The Constructor.
@@ -63,7 +67,7 @@ public class ConcelhoPK implements Serializable {
 	 * @param idConcelho
 	 *            the id concelho
 	 */
-	public ConcelhoPK(long idDistrito, long idConcelho) {
+	public ConcelhoPK(String idDistrito, String idConcelho) {
 		this.idDistrito = idDistrito;
 		this.idConcelho = idConcelho;
 	}
@@ -73,7 +77,7 @@ public class ConcelhoPK implements Serializable {
 	 * 
 	 * @return the id distrito
 	 */
-	public long getIdDistrito() {
+	public String getIdDistrito() {
 		return idDistrito;
 	}
 
@@ -83,7 +87,7 @@ public class ConcelhoPK implements Serializable {
 	 * @param idDistrito
 	 *            the id distrito
 	 */
-	public void setIdDistrito(long idDistrito) {
+	public void setIdDistrito(String idDistrito) {
 		this.idDistrito = idDistrito;
 	}
 
@@ -92,7 +96,7 @@ public class ConcelhoPK implements Serializable {
 	 * 
 	 * @return the id concelho
 	 */
-	public long getIdConcelho() {
+	public String getIdConcelho() {
 		return idConcelho;
 	}
 
@@ -102,7 +106,7 @@ public class ConcelhoPK implements Serializable {
 	 * @param idConcelho
 	 *            the id concelho
 	 */
-	public void setIdConcelho(long idConcelho) {
+	public void setIdConcelho(String idConcelho) {
 		this.idConcelho = idConcelho;
 	}
 
@@ -115,16 +119,11 @@ public class ConcelhoPK implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idConcelho ^ (idConcelho >>> 32));
-		result = prime * result + (int) (idDistrito ^ (idDistrito >>> 32));
+		result = prime * result + ((idConcelho == null) ? 0 : idConcelho.hashCode());
+		result = prime * result + ((idDistrito == null) ? 0 : idDistrito.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -137,10 +136,18 @@ public class ConcelhoPK implements Serializable {
 			return false;
 		}
 		ConcelhoPK other = (ConcelhoPK) obj;
-		if (idConcelho != other.idConcelho) {
+		if (idConcelho == null) {
+			if (other.idConcelho != null) {
+				return false;
+			}
+		} else if (!idConcelho.equals(other.idConcelho)) {
 			return false;
 		}
-		if (idDistrito != other.idDistrito) {
+		if (idDistrito == null) {
+			if (other.idDistrito != null) {
+				return false;
+			}
+		} else if (!idDistrito.equals(other.idDistrito)) {
 			return false;
 		}
 		return true;

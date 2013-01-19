@@ -33,9 +33,9 @@ import org.tamarillo.addressws.model.Distrito;
 /**
  * The Class DistritoResourceRESTService.
  */
-@Path("/distrito")
+@Path("/address")
 @RequestScoped
-public class DistritoResourceRESTService {
+public class AddressRESTService implements IAddressService {
 
 	/** The em. */
 	@Inject
@@ -48,29 +48,8 @@ public class DistritoResourceRESTService {
 	 */
 	@GET
 	@Path("/xml")
-	@Produces(MediaType.APPLICATION_XML)
-	public List<Distrito> listAllDistritoXml() {
-		return listAllDistrito();
-	}
-
-	/**
-	 * List all distrito xml.
-	 * 
-	 * @return the list< distrito>
-	 */
-	@GET
-	@Path("/json")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Distrito> listAllDistritoJson() {
-		return listAllDistrito();
-	}
-
-	/**
-	 * List all distrito.
-	 * 
-	 * @return the list< distrito>
-	 */
-	private List<Distrito> listAllDistrito() {
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Distrito> listAllDistrito() {
 		return em.createNamedQuery("Distrito.findAll", Distrito.class).getResultList();
 	}
 
@@ -83,33 +62,9 @@ public class DistritoResourceRESTService {
 	 */
 	@GET
 	@Path("/xml/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_XML)
-	public Distrito lookupMemberByIdXml(@PathParam("id") long id) {
-		return lookupMemberById(id);
-	}
-
-	/**
-	 * Lookup member by id json.
-	 * 
-	 * @param id
-	 *            the id
-	 * @return the distrito
-	 */
-	@GET
-	@Path("/json/{id:[0-9][0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Distrito lookupMemberByIdJson(@PathParam("id") long id) {
-		return lookupMemberById(id);
-	}
-
-	/**
-	 * Lookup member by id.
-	 * 
-	 * @param id
-	 *            the id
-	 * @return the distrito
-	 */
-	private Distrito lookupMemberById(@PathParam("id") long id) {
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Distrito lookupDistritoById(@PathParam("id") long id) {
 		return (Distrito) em.find(Distrito.class, id);
 	}
+
 }
