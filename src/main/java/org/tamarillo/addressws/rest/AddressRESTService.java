@@ -48,7 +48,7 @@ public class AddressRESTService implements IAddressService {
 	 * @return the list< distrito>
 	 */
 	@GET
-	@Path("/distrito/all")
+	@Path("/distritos")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<Distrito> listAllDistrito() {
 		return em.createNamedQuery("Distrito.findAll", Distrito.class).getResultList();
@@ -62,7 +62,7 @@ public class AddressRESTService implements IAddressService {
 	 * @return the distrito
 	 */
 	@GET
-	@Path("/distrito/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
+	@Path("/distritos/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Distrito lookupDistritoById(@PathParam("id") long id) {
 		return (Distrito) em.find(Distrito.class, id);
@@ -74,8 +74,8 @@ public class AddressRESTService implements IAddressService {
 	 * @return the list< distrito>
 	 */
 	@GET
-	@Path("/concelho/all")
-	@Produces(MediaType.APPLICATION_XML)
+	@Path("/concelhos")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<Concelho> listAllConcelho() {
 		return em.createNamedQuery("Concelho.findAll", Concelho.class).getResultList();
 	}
@@ -88,8 +88,8 @@ public class AddressRESTService implements IAddressService {
 	 * @return the distrito
 	 */
 	@GET
-	@Path("/distrito/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
-	@Produces(MediaType.APPLICATION_XML)
+	@Path("/concelhos/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Concelho lookupConcelhoById(@PathParam("id") long id) {
 		return (Concelho) em.find(Concelho.class, id);
 	}

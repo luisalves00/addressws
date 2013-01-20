@@ -38,10 +38,8 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import org.tamarillo.addressws.xml.util.TimestampAdapter;
 
 /**
  * The Class Distrito.
@@ -78,7 +76,8 @@ public class Distrito implements IEntity, Serializable {
 	@Version
 	@NotNull
 	@Column(name = "version")
-	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	// @XmlJavaTypeAdapter(TimestampAdapter.class)
+	@XmlTransient
 	private Timestamp version;
 
 	/* ********************************* */
@@ -87,6 +86,7 @@ public class Distrito implements IEntity, Serializable {
 
 	/** The concelhos. */
 	@OneToMany(mappedBy = "distrito", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@XmlTransient
 	public Set<Concelho> concelhos;
 
 	/*

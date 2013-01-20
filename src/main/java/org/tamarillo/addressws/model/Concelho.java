@@ -38,9 +38,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import org.tamarillo.addressws.xml.util.TimestampAdapter;
 
 /**
  * The Class Concelho.
@@ -78,7 +75,8 @@ public class Concelho implements IEntity, Serializable {
 	@Version
 	@NotNull
 	@Column(name = "version")
-	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	// @XmlJavaTypeAdapter(TimestampAdapter.class)
+	@XmlTransient
 	private Timestamp version;
 
 	/* ********************************* */
@@ -88,7 +86,6 @@ public class Concelho implements IEntity, Serializable {
 	/** The distrito. */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
-	@XmlTransient
 	private Distrito distrito;
 
 	/*
