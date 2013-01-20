@@ -6,7 +6,8 @@
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="addressws" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/jdbc/ptaddress</jta-data-source>
+
+		<jta-data-source>${jta.datasource}</jta-data-source>
 		
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 

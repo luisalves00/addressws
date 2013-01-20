@@ -28,6 +28,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.tamarillo.addressws.model.Concelho;
 import org.tamarillo.addressws.model.Distrito;
 
 /**
@@ -42,29 +43,54 @@ public class AddressRESTService implements IAddressService {
 	private EntityManager em;
 
 	/**
-	 * List all distrito xml.
+	 * List all distrito.
 	 * 
 	 * @return the list< distrito>
 	 */
 	@GET
-	@Path("/xml")
+	@Path("/distrito/all")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public List<Distrito> listAllDistrito() {
 		return em.createNamedQuery("Distrito.findAll", Distrito.class).getResultList();
 	}
 
 	/**
-	 * Lookup member by id xml.
+	 * Lookup distrito by id.
 	 * 
 	 * @param id
 	 *            the id
 	 * @return the distrito
 	 */
 	@GET
-	@Path("/xml/{id:[0-9][0-9]*}")
+	@Path("/distrito/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Distrito lookupDistritoById(@PathParam("id") long id) {
 		return (Distrito) em.find(Distrito.class, id);
 	}
 
+	/**
+	 * List all concelho.
+	 * 
+	 * @return the list< distrito>
+	 */
+	@GET
+	@Path("/concelho/all")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Concelho> listAllConcelho() {
+		return em.createNamedQuery("Concelho.findAll", Concelho.class).getResultList();
+	}
+
+	/**
+	 * Lookup concelho by id.
+	 * 
+	 * @param id
+	 *            the id
+	 * @return the distrito
+	 */
+	@GET
+	@Path("/distrito/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Concelho lookupConcelhoById(@PathParam("id") long id) {
+		return (Concelho) em.find(Concelho.class, id);
+	}
 }

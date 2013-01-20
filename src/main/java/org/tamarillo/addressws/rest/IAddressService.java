@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.tamarillo.addressws.model.Distrito;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IAddressService.
  */
