@@ -19,7 +19,9 @@ package org.tamarillo.addressws.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -28,6 +30,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -39,6 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Concelho.
  */
@@ -87,6 +91,11 @@ public class Concelho implements IEntity, Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
 	private Distrito distrito;
+
+	/** The concelhos. */
+	@OneToMany(mappedBy = "concelho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@XmlTransient
+	public Set<Localidade> localidades;
 
 	/*
 	 * (non-Javadoc)
@@ -152,6 +161,25 @@ public class Concelho implements IEntity, Serializable {
 	 */
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
+	}
+
+	/**
+	 * Gets the localidades.
+	 * 
+	 * @return the localidades
+	 */
+	public Set<Localidade> getLocalidades() {
+		return localidades;
+	}
+
+	/**
+	 * Sets the localidades.
+	 * 
+	 * @param localidades
+	 *            the new localidades
+	 */
+	public void setLocalidades(Set<Localidade> localidades) {
+		this.localidades = localidades;
 	}
 
 	/*

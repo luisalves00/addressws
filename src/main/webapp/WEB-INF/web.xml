@@ -52,6 +52,6 @@
 
 	<!-- Data Source -->
 	<!-- look for dev.properties and prd.properties -->
-	${datadource.ref}
+	<!--    ${datadource.ref}   -->
 	
 </web-app>
