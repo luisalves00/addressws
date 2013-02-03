@@ -15,12 +15,16 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.rest;
+package org.tamarillo.addressws.service;
 
 import java.util.List;
 
+import javax.ws.rs.PathParam;
+
+import org.tamarillo.addressws.model.Concelho;
 import org.tamarillo.addressws.model.Distrito;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IAddressService.
  */
@@ -28,17 +32,32 @@ public interface IAddressService {
 
 	/**
 	 * List all distrito.
-	 * 
+	 *
 	 * @return the list
 	 */
 	public List<Distrito> listAllDistrito();
 
 	/**
-	 * Lookup member by id xml.
-	 * 
-	 * @param id
-	 *            the id
+	 * Lookup distrito by id.
+	 *
+	 * @param id the id
 	 * @return the distrito
 	 */
-	public Distrito lookupDistritoById(long id);
+	public Distrito lookupDistritoById(String id);
+	
+	/**
+	 * List all concelho.
+	 *
+	 * @return the list
+	 */
+	public List<Concelho> listAllConcelho();
+	
+	/**
+	 * Lookup concelho by id.
+	 *
+	 * @param idDistrito the id distrito
+	 * @param idConcelho the id concelho
+	 * @return the concelho
+	 */
+	public Concelho lookupConcelhoById(String idDistrito,String idConcelho);
 }
