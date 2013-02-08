@@ -22,4 +22,6 @@ package org.tamarillo.addressws.model;
  */
 public enum ArteriaType {
 
+	//not in use...
+	
 }

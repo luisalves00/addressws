@@ -33,6 +33,7 @@ import org.tamarillo.addressws.model.Concelho;
 import org.tamarillo.addressws.model.ConcelhoPK;
 import org.tamarillo.addressws.model.Distrito;
 import org.tamarillo.addressws.service.IAddressService;
+import org.tamarillo.addressws.service.impl.AddressService;
 
 
 /**
@@ -40,10 +41,10 @@ import org.tamarillo.addressws.service.IAddressService;
  */
 @Path("/address")
 @RequestScoped
-public class AddressRESTService {
+public class AddressRESTService implements IAddressService {
 
 	@Inject
-	private IAddressService addressService;
+	private AddressService addressService;
 
 
 	/* (non-Javadoc)
@@ -91,4 +92,6 @@ public class AddressRESTService {
 	public Concelho lookupConcelhoById(@PathParam("idDistrito") String idDistrito,@PathParam("idConcelho") String idConcelho) {
 		return addressService.lookupConcelhoById(idDistrito, idConcelho);
 	}
+	
+	
 }

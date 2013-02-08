@@ -23,6 +23,7 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 /**
  * This class uses CDI to alias Java EE resources, such as the persistence
@@ -40,11 +41,10 @@ import javax.persistence.PersistenceContext;
  * .
  */
 public class Resources {
-	// use @SuppressWarnings to tell IDE to ignore warnings about field not
-	// being referenced directly
+
 	/** The em. */
 	@Produces
-	@PersistenceContext
+	@PersistenceContext(type=PersistenceContextType.EXTENDED)
 	private EntityManager em;
 
 	/**

@@ -87,11 +87,12 @@ public class Concelho implements IEntity, Serializable {
 	/* ********************************* */
 
 	/** The distrito. */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
 	private Distrito distrito;
 
-	/** The concelhos. */
+
+	/** The localidades. */
 	@OneToMany(mappedBy = "concelho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@XmlTransient
 	public Set<Localidade> localidades;

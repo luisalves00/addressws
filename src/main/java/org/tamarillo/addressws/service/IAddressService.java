@@ -24,7 +24,7 @@ import javax.ws.rs.PathParam;
 import org.tamarillo.addressws.model.Concelho;
 import org.tamarillo.addressws.model.Distrito;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IAddressService.
  */
