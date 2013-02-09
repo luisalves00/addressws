@@ -25,39 +25,59 @@
 		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 	<!-- Primefaces Theme -->
-    <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>flick</param-value>  
-    </context-param>  
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>flick</param-value>
+	</context-param>
 
 	<!-- Set the project stage -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>${project.stage}</param-value>
 	</context-param>
-	
+
 	<!-- Disable PowerdBy Header -->
 	<context-param>
 		<param-name>com.sun.faces.sendPoweredByHeader</param-name>
 		<param-value>false</param-value>
 	</context-param>
-	
+
 	<!-- Faces Servlet Config -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
+	<!-- Filters -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.tamarillo.addressws.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Data Source -->
 	<!-- look for dev.properties and prd.properties -->
-	<!--    ${datadource.ref}   -->
-	
+	<!-- ${datadource.ref} -->
+
 </web-app>

@@ -17,7 +17,7 @@
 
 package org.tamarillo.addressws.controller;
 
-import java.util.logging.Logger;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
@@ -28,6 +28,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
+import org.slf4j.Logger;
 import org.tamarillo.addressws.model.Member;
 
 // The @Stateful annotation eliminates the need for manual transaction demarcation
@@ -41,7 +42,10 @@ import org.tamarillo.addressws.model.Member;
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 @Model
-public class MemberRegistration {
+public class MemberRegistration implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 8497563434945271379L;
 
 	/** The log. */
 	@Inject

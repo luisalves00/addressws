@@ -17,6 +17,7 @@
 
 package org.tamarillo.addressws.controller;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,15 +29,13 @@ import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.tamarillo.addressws.util.JsfUtil;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 
 /**
  * Get information from Maven to inject on our java project.
@@ -48,17 +47,27 @@ import org.slf4j.LoggerFactory;
  */
 @ApplicationScoped
 @Named(value = "technicalInfo")
-public class TechnicalInfo {
+public class TechnicalInfo implements Serializable{
 
-	/**
-	 * logger
-	 */
-	private static final Logger logger = LoggerFactory.getLogger(TechnicalInfo.class);
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -8138656826572480010L;
+
+	/** The log. */
+	@Inject
+	private Logger log;
 	
+	/** The revision. */
 	private String revision;
+	
+	/** The build time. */
 	private String buildTime;
+	
+	/** The version. */
 	private String version;
 
+	/**
+	 * Initialize.
+	 */
 	@PostConstruct
 	protected void initialize() {
 		ResourceBundle rb;
@@ -93,11 +102,13 @@ public class TechnicalInfo {
 			version = appProperties.get("addressws.version");
 
 		} catch (MissingResourceException e) {
-			logger.warn("Resource bundle 'addressws' was not found!", e);
+			log.warn("Resource bundle 'addressws' was not found!", e);
 		}
 	}
 
 	/**
+	 * Gets the revision.
+	 *
 	 * @return the revision
 	 */
 	public String getRevision() {
@@ -105,6 +116,8 @@ public class TechnicalInfo {
 	}
 
 	/**
+	 * Gets the builds the time.
+	 *
 	 * @return the buildTime
 	 */
 	public String getBuildTime() {
@@ -112,6 +125,8 @@ public class TechnicalInfo {
 	}
 
 	/**
+	 * Gets the version.
+	 *
 	 * @return the version
 	 */
 	public String getVersion() {

@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+﻿jQuery(document).ready(function($){
 
 	// hide messages 
 	$("#error, #sent-form-msg").hide();

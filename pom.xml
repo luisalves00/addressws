@@ -241,6 +241,13 @@
 			<version>1.0.4</version>
 		</dependency>
 
+		<!-- CSV -->
+		<dependency>
+			<groupId>org.jsefa</groupId>
+			<artifactId>jsefa</artifactId>
+			<version>0.9.3.RELEASE</version>
+		</dependency>
+
 		<!-- Richfaces Bootstrap -->
 		<!-- <dependency> <groupId>org.richfaces.sandbox.ui.bootstrap</groupId> 
 			<artifactId>bootstrap-ui</artifactId> <version>4.3.0-SNAPSHOT</version> </dependency> -->
