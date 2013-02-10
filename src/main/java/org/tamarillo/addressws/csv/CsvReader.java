@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.io.StringReader;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -31,7 +32,7 @@ import org.tamarillo.addressws.service.impl.AddressService;
  * The Class CsvReader.
  */
 @Named
-@ApplicationScoped
+@SessionScoped
 public class CsvReader implements Serializable {
 
 	/** The Constant serialVersionUID. */

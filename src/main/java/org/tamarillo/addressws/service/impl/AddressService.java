@@ -24,7 +24,7 @@ import org.tamarillo.addressws.service.IAddressService;
  * The Class AddressService.
  */
 @Stateful(name = "addressService")
-@Model
+@LocalBean
 public class AddressService implements IAddressService {
 
 	/** The em. */
@@ -50,11 +50,7 @@ public class AddressService implements IAddressService {
 						+ " already exists.", ex);
 			}
 			throw ex;
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		} 
 	}
 
 	/*
@@ -98,11 +94,7 @@ public class AddressService implements IAddressService {
 						+ " already exists.", ex);
 			}
 			throw ex;
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		} 
 	}
 
 	/*
@@ -147,11 +139,7 @@ public class AddressService implements IAddressService {
 						+ " already exists.", ex);
 			}
 			throw ex;
-		} finally {
-			if (em != null) {
-				em.close();
-			}
-		}
+		} 
 	}
 	
 	/* (non-Javadoc)
