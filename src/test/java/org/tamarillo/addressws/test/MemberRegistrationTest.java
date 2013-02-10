@@ -32,7 +32,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.tamarillo.addressws.controller.MemberRegistration;
-import org.tamarillo.addressws.model.Member;
+import org.tamarillo.addressws.entity.Member;
 import org.tamarillo.addressws.util.Resources;
 
 /**

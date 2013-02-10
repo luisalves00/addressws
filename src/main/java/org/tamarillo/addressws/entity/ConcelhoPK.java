@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 

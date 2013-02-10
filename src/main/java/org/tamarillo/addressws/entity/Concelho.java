@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -27,14 +27,11 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -45,71 +42,66 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-
-
 /**
- * The Class Localidade.
+ * The Class Concelho.
  */
 @Entity
-@Table(name = "Localidade")
-@NamedQueries({ @NamedQuery(name = "Localidade.findAll", query = "SELECT l FROM Localidade l"),
-		@NamedQuery(name = "Localidade.findByLikeName", query = "SELECT l FROM Localidade l WHERE l.name LIKE :name") })
+@Table(name = "Concelho")
+@NamedQueries({
+		@NamedQuery(name = "Concelho.findAll", query = "SELECT c FROM Concelho c"),
+		@NamedQuery(name = "Concelho.findById", query = "SELECT c FROM Concelho c WHERE c.id = :id"),
+		@NamedQuery(name = "Concelho.findByName", query = "SELECT c FROM Concelho c WHERE c.name = :name"),
+		@NamedQuery(name = "Concelho.findByIdDistrito", query = "SELECT c FROM Concelho c WHERE c.id.idDistrito = :idDistrito"),
+		@NamedQuery(name = "Concelho.findByIdConcelho", query = "SELECT c FROM Concelho c WHERE c.id.idConcelho = :idConcelho"),
+		@NamedQuery(name = "Concelho.findByIdDistritoAndIdConcelho", query = "SELECT c FROM Concelho c WHERE c.id.idDistrito = :idDistrito AND c.id.idConcelho = :idConcelho"),
+		@NamedQuery(name = "Concelho.findByLikeName", query = "SELECT c FROM Concelho c WHERE c.name LIKE :name") })
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Localidade")
-public class Localidade implements IEntity, Serializable {
+@XmlType(name = "Concelho")
+public class Concelho implements IEntity, Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5712355616301529260L;
 
-	/** The Localidade pk. */
+	/** The concelho pk. */
 	@EmbeddedId
-	protected LocalidadePK id;
+	protected ConcelhoPK id;
 
 	/** The name. */
 	@NotNull
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "name")
 	private String name;
 
 	/** The version. */
 	@Version
-	@NotNull
 	@Column(name = "version")
-	@Transient
-	//@XmlJavaTypeAdapter(TimestampAdapter.class)
+	// @XmlJavaTypeAdapter(TimestampAdapter.class)
+	@XmlTransient
 	private Timestamp version;
 
 	/* ********************************* */
 	/* ******** Relationship *********** */
 	/* ********************************* */
 
-	/** The concelho. */
+	/** The distrito. */
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumns({ @JoinColumn(name = "id_distrito", insertable = false, updatable = false),
-			@JoinColumn(name = "id_concelho", insertable = false, updatable = false) })
-	private Concelho concelho;
-	
-	/** The arterias. */
-	@OneToMany(mappedBy = "localidade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@XmlTransient
-	public Set<Arteria> arterias;
-	
-	
-    /** The codigo postal. */
-    @OneToOne
-    @JoinColumns({ @JoinColumn(name = "cp4", insertable = false, updatable = false),
-		@JoinColumn(name = "cp3", insertable = false, updatable = false) })
-    private CodigoPostal codigoPostal;
+	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+	private Distrito distrito;
 
+
+	/** The localidades. */
+	@OneToMany(mappedBy = "concelho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@XmlTransient
+	public Set<Localidade> localidades;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.tamarillo.addressws.model.IEntity#getId()
 	 */
-	public LocalidadePK getId() {
+	public ConcelhoPK getId() {
 		return id;
 	}
 
@@ -119,7 +111,7 @@ public class Localidade implements IEntity, Serializable {
 	 * @param id
 	 *            the id
 	 */
-	public void setId(LocalidadePK id) {
+	public void setId(ConcelhoPK id) {
 		this.id = id;
 	}
 
@@ -143,16 +135,6 @@ public class Localidade implements IEntity, Serializable {
 	}
 
 	/**
-	 * Sets the version.
-	 * 
-	 * @param version
-	 *            the new version
-	 */
-	public void setVersion(Timestamp version) {
-		this.version = version;
-	}
-
-	/**
 	 * Gets the version.
 	 * 
 	 * @return the version
@@ -162,57 +144,41 @@ public class Localidade implements IEntity, Serializable {
 	}
 
 	/**
-	 * Gets the concelho.
-	 *
-	 * @return the concelho
+	 * Gets the distrito.
+	 * 
+	 * @return the distrito
 	 */
-	public Concelho getConcelho() {
-		return concelho;
+	public Distrito getDistrito() {
+		return distrito;
 	}
 
 	/**
-	 * Sets the concelho.
-	 *
-	 * @param concelho the concelho to set
+	 * Sets the distrito.
+	 * 
+	 * @param distrito
+	 *            the distrito
 	 */
-	public void setConcelho(Concelho concelho) {
-		this.concelho = concelho;
-	}
-	
-	/**
-	 * Gets the arterias.
-	 *
-	 * @return the arterias
-	 */
-	public Set<Arteria> getArterias() {
-		return arterias;
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
 	}
 
 	/**
-	 * Sets the arterias.
-	 *
-	 * @param arterias the new arterias
+	 * Gets the localidades.
+	 * 
+	 * @return the localidades
 	 */
-	public void setArterias(Set<Arteria> arterias) {
-		this.arterias = arterias;
+	public Set<Localidade> getLocalidades() {
+		return localidades;
 	}
 
 	/**
-	 * Gets the codigo postal.
-	 *
-	 * @return the codigo postal
+	 * Sets the localidades.
+	 * 
+	 * @param localidades
+	 *            the new localidades
 	 */
-	public CodigoPostal getCodigoPostal() {
-		return codigoPostal;
-	}
-
-	/**
-	 * Sets the codigo postal.
-	 *
-	 * @param codigoPostal the new codigo postal
-	 */
-	public void setCodigoPostal(CodigoPostal codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public void setLocalidades(Set<Localidade> localidades) {
+		this.localidades = localidades;
 	}
 
 	/*
@@ -241,10 +207,10 @@ public class Localidade implements IEntity, Serializable {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Localidade)) {
+		if (!(obj instanceof Concelho)) {
 			return false;
 		}
-		Localidade other = (Localidade) obj;
+		Concelho other = (Concelho) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -262,7 +228,6 @@ public class Localidade implements IEntity, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Localidade [id=" + id + "]";
+		return "Concelho [id=" + id + "]";
 	}
-
 }

@@ -29,9 +29,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.annotations.providers.jaxb.json.BadgerFish;
-import org.tamarillo.addressws.model.Concelho;
-import org.tamarillo.addressws.model.ConcelhoPK;
-import org.tamarillo.addressws.model.Distrito;
+import org.tamarillo.addressws.entity.Concelho;
+import org.tamarillo.addressws.entity.ConcelhoPK;
+import org.tamarillo.addressws.entity.Distrito;
+import org.tamarillo.addressws.entity.Localidade;
 import org.tamarillo.addressws.service.IAddressService;
 import org.tamarillo.addressws.service.impl.AddressService;
 
@@ -91,6 +92,19 @@ public class AddressRESTService implements IAddressService {
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Concelho lookupConcelhoById(@PathParam("idDistrito") String idDistrito,@PathParam("idConcelho") String idConcelho) {
 		return addressService.lookupConcelhoById(idDistrito, idConcelho);
+	}
+
+	@Override
+	public List<Localidade> listAllLocalidade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Localidade lookupLocalidadeById(String idDistrito,
+			String idConcelho, String idLocalidade) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

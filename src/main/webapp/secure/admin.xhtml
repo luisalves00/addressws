@@ -11,9 +11,34 @@
 		<h:form id="file-upload-form" enctype="multipart/form-data">
 
 			<p:fileUpload id="file-upload-comp"
-				fileUploadListener="#{admin.handleDistritoFileUpload}"
-				mode="advanced" update=":messages" auto="true" sizeLimit="#{admin.maxFileSize}"
-				allowTypes="/(\.|\/)(csv)$/" />
+				fileUploadListener="#{admin.handleFileUpload}" mode="advanced"
+				update=":messages, file-upload-comp, process-file-btn-container" auto="true"
+				sizeLimit="#{admin.maxFileSize}" allowTypes="/(\.|\/)(csv)$/" />
+
+			<h:panelGroup id="process-file-btn-container" layout="block">
+				<h:panelGroup id="process-file-btn" layout="block"
+					rendered="#{admin.fileUploaded}">
+
+					<p:commandButton id="process-district" icon="ui-icon-gear"
+						actionListener="#{admin.handleDistritoCsvFile}"
+						process="@this" immediate="true"
+						update=":messages" 
+						value="#{msg['admin.csv.file.distritos.execute']}" />
+
+					<p:commandButton id="process-county" icon="ui-icon-gear"
+						actionListener="#{admin.handleConcelhoCsvFile}"
+						process="@this" immediate="true"
+						update=":messages"
+						value="#{msg['admin.csv.file.concelhos.execute']}" />
+
+					<p:commandButton id="process-all-zip-codes" icon="ui-icon-gear"
+						actionListener="#{admin.handleTodosCodigosPostaisCsvFile}"
+						process="@this" immediate="true"
+						update=":messages" 
+						value="#{msg['admin.csv.file.all.zip.code.execute']}" />
+
+				</h:panelGroup>
+			</h:panelGroup>
 
 		</h:form>
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -39,6 +39,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -65,63 +66,62 @@ public class Arteria implements IEntity, Serializable {
 	
 	/** The arteria type. */
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "arteria_type")
 	private String arteriaType;
 
 	/** The first prep. */
 	@Size(min = 1, max = 8)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "first_prep")
 	private String firstPrep;
 
 	/** The arteria title. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "arteria_title")
 	private String arteriaTitle;
 
 	/** The second prep. */
 	@Size(min = 1, max = 8)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "second_prep")
 	private String secondPrep;
 
 	/** The arteria name. */
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "arteria_name")
 	private String arteriaName;
 
 	/** The arteria local. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "arteria_local")
 	private String arteriaLocal;
 
 	/** The troco. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "troco")
 	private String troco;
 
 	/** The porta. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "porta")
 	private String porta;
 
 	/** The cliente. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "cliente")
 	private String cliente;
 	
 	/** The version. */
 	@Version
-	@NotNull
 	@Column(name = "version")
-	@Transient
+	@XmlTransient
 	//@XmlJavaTypeAdapter(TimestampAdapter.class)
 	private Timestamp version;
 	

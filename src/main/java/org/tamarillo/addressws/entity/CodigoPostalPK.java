@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 
@@ -43,14 +43,12 @@ public class CodigoPostalPK implements Serializable {
 	private static final long serialVersionUID = -4632943880446394426L;
 
 	/** The cp4. */
-	@Size(min = 4, max = 4)
-	@Pattern(regexp = "[A-Za-z]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "must contain only numbers")
 	@Column(name = "cp4")
 	private String cp4;
 
 	/** The cp3. */
-	@Size(min = 3, max = 3)
-	@Pattern(regexp = "[A-Za-z]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[0-9][0-9][0-9]", message = "must contain only numbers")
 	@Column(name = "cp3")
 	private String cp3;
 

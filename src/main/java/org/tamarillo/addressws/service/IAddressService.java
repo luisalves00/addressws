@@ -21,10 +21,12 @@ import java.util.List;
 
 import javax.ws.rs.PathParam;
 
-import org.tamarillo.addressws.model.Concelho;
-import org.tamarillo.addressws.model.Distrito;
+import org.tamarillo.addressws.entity.Concelho;
+import org.tamarillo.addressws.entity.Distrito;
+import org.tamarillo.addressws.entity.Localidade;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface IAddressService.
  */
@@ -60,4 +62,23 @@ public interface IAddressService {
 	 * @return the concelho
 	 */
 	public Concelho lookupConcelhoById(String idDistrito,String idConcelho);
+	
+	
+	/**
+	 * List all localidade.
+	 *
+	 * @return the list
+	 */
+	public List<Localidade> listAllLocalidade();
+	
+	
+	/**
+	 * Lookup localidade by id.
+	 *
+	 * @param idDistrito the id distrito
+	 * @param idConcelho the id concelho
+	 * @param idLocalidade the id localidade
+	 * @return the localidade
+	 */
+	public Localidade lookupLocalidadeById(String idDistrito,String idConcelho, String idLocalidade);
 }

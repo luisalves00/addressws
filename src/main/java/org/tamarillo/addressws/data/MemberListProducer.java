@@ -30,7 +30,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.tamarillo.addressws.model.Member;
+import org.tamarillo.addressws.entity.Member;
 
 /**
  * The Class MemberListProducer.

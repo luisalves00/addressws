@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -35,6 +35,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 // TODO: Auto-generated Javadoc
@@ -62,15 +63,14 @@ public class CodigoPostal implements IEntity, Serializable {
 
 	/** The cpalf. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "cpalf")
 	private String cpalf;
 	
 	/** The version. */
 	@Version
-	@NotNull
 	@Column(name = "version")
-	@Transient
+	@XmlTransient
 	//@XmlJavaTypeAdapter(TimestampAdapter.class)
 	private Timestamp version;
 	

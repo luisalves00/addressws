@@ -50,7 +50,7 @@ import org.jsefa.csv.annotation.CsvField;
  * The Class Concelho.
  */
 @CsvDataType()
-public class ConcelhoCsv implements Serializable {
+public class ConcelhoCsv implements Serializable{
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4252946669892920908L;

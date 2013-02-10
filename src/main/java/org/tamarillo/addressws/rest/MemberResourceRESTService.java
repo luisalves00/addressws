@@ -27,7 +27,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import org.tamarillo.addressws.model.Member;
+import org.tamarillo.addressws.entity.Member;
 
 /**
  * JAX-RS Example

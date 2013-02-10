@@ -29,7 +29,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
-import org.tamarillo.addressws.model.Member;
+import org.tamarillo.addressws.entity.Member;
 
 // The @Stateful annotation eliminates the need for manual transaction demarcation
 /**

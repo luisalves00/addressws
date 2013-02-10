@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.tamarillo.addressws.model;
+package org.tamarillo.addressws.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -62,19 +62,18 @@ public class Distrito implements IEntity, Serializable {
 	@Id
 	@Column(name = "id")
 	@NotNull
-	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
+	@Pattern(regexp = "[0-9][0-9]", message = "must contain only 2 numbers")
 	private String id;
 
 	/** The name. */
 	@NotNull
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
 	@Column(name = "name")
 	private String name;
 
 	/** The version. */
 	@Version
-	@NotNull
 	@Column(name = "version")
 	// @XmlJavaTypeAdapter(TimestampAdapter.class)
 	@XmlTransient

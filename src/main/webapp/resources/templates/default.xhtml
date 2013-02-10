@@ -26,23 +26,20 @@
 
 	<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-	<!-- All JavaScript at the bottom, except this Modernizr build.
-       Modernizr enables HTML5 elements & feature detects for optimal performance.
-       Create your own custom Modernizr build: www.modernizr.com/download/ -->
-	<h:outputScript library="js" name="modernizr-2.5.3.min.js" />
-
 	<title>#{msg['default.page.title']}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="description" content="portuguese address webservice" />
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </h:head>
 
 
 <h:body id="top-section" data-spy="scroll" data-target="#topnav"
 	data-offset="70">
 
-	<p:growl id="messages" showDetail="true" autoUpdate="true" showSummary="true" />
+	<p:growl id="messages" showDetail="true" autoUpdate="true"
+		showSummary="true" />
 
 	<div class="container">
 
@@ -64,7 +61,7 @@
 								<!-- Main nav -->
 								<ul class="nav">
 									<li class="active"><a href="#top-section">#{msg['page.top.title']}</a></li>
-									<li><a href="#work-section">#{msg['page.examples.title']}</a></li>
+									<li><a href="#example-section">#{msg['page.examples.title']}</a></li>
 									<li><a href="#info-section">#{msg['page.api.info.title']}</a></li>
 									<li><a href="#contact-section">#{msg['page.contact.title']}</a></li>
 								</ul>
@@ -135,10 +132,15 @@
 	</div>
 
 	<!-- JavaScript at the bottom for fast page loading -->
-	
+	<h:outputScript  library="js" name="prime-jquery-fix.js" />
+
+	<!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+	<h:outputScript target="head" library="js" name="modernizr-2.5.3.min.js" />
+
 	<!-- primefaces already include jquery -->
 	<!--  <h:outputScript library="js" name="jquery-1.7.1.min.js" /> -->
-
 	<!-- scripts concatenated and minified via build script -->
 	<h:outputScript library="js" name="plugins.js" />
 	<h:outputScript library="js" name="bootstrap-dropdown.js" />
