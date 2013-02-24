@@ -78,9 +78,11 @@ public class TechnicalInfo implements Serializable{
 			
 			// fetch the application properties
 			String strAppProps = rb.getString("application.properties");
+			log.info("application.properties = " + strAppProps);
 
 			// remove unwanted maven stuff
-			int lastBrace = strAppProps.indexOf("}");
+			int lastBrace = strAppProps.lastIndexOf("}");
+			
 			strAppProps = strAppProps.substring(1, lastBrace);
 
 			Map<String, String> appProperties = new HashMap<String, String>();
