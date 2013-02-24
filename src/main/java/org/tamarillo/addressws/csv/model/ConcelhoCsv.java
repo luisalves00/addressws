@@ -56,15 +56,15 @@ public class ConcelhoCsv implements Serializable{
 	private static final long serialVersionUID = 4252946669892920908L;
 
 	/** The id distrito. */
-	@CsvField(pos = 1)
+	@CsvField(pos = 1,  required=true) //, constraints = "pattern=\\d{2}")
 	private String idDistrito;
 
 	/** The id concelho. */
-	@CsvField(pos = 2)
+	@CsvField(pos = 2,  required=true) //, constraints = "pattern=\\d{2}")
 	private String idConcelho;
 
 	/** The name. */
-	@CsvField(pos = 3)
+	@CsvField(pos = 3,  required=true, constraints = "pattern=[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	private String name;
 
 	/**

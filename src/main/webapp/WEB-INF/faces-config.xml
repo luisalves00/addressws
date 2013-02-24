@@ -11,6 +11,27 @@
 	<!-- Write your navigation rules here. You are encouraged to use CDI for 
 		creating @Named managed beans. -->
 	<application>
+	
+		<!-- Application is started -->
+    	<system-event-listener>
+		<system-event-listener-class>
+			org.tamarillo.addressws.listener.FacesAppListener
+		</system-event-listener-class>
+		<system-event-class>
+			javax.faces.event.PostConstructApplicationEvent
+		</system-event-class>    					
+    	</system-event-listener> 	 
+ 
+    	<!-- Before Application is shut down -->
+    	<system-event-listener>
+		<system-event-listener-class>
+			org.tamarillo.addressws.listener.FacesAppListener
+		</system-event-listener-class>
+		<system-event-class>
+			javax.faces.event.PreDestroyApplicationEvent
+		</system-event-class>    					
+    	</system-event-listener> 
+	
 		<locale-config>
 			<default-locale>pt_PT</default-locale>
 			<supported-locale>en_US</supported-locale>

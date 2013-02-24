@@ -62,13 +62,14 @@ public class Distrito implements IEntity, Serializable {
 	@Id
 	@Column(name = "id")
 	@NotNull
-	@Pattern(regexp = "[0-9][0-9]", message = "must contain only 2 numbers")
+	@Size(max = 2)
+	@Pattern(regexp = "\\d{2}", message = "must contain only 2 numbers")
 	private String id;
 
 	/** The name. */
 	@NotNull
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "name")
 	private String name;
 

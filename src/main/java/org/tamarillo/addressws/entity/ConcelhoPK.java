@@ -23,6 +23,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -43,13 +44,15 @@ public class ConcelhoPK implements Serializable {
 	/** The id distrito. */
 	@Column(name = "id_distrito")
 	@NotNull
-	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
+	@Size(max = 2)
+	@Pattern(regexp = "\\d{2}", message = "must contain only 2 numbers")
 	private String idDistrito;
 
 	/** The id concelho. */
-	@NotNull
 	@Column(name = "id_concelho")
-	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9]", message = "must contain only 2 letters and/or numbers")
+	@NotNull
+	@Size(max = 2)
+	@Pattern(regexp = "\\d{2}", message = "must contain only 2 numbers")
 	private String idConcelho;
 
 	/**

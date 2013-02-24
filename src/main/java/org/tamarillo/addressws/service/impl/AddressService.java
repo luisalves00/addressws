@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -20,11 +22,14 @@ import org.tamarillo.addressws.entity.LocalidadePK;
 import org.tamarillo.addressws.jpa.exception.PreexistingEntityException;
 import org.tamarillo.addressws.service.IAddressService;
 
+
+// TODO: Auto-generated Javadoc
 /**
  * The Class AddressService.
  */
 @Stateful(name = "addressService")
-@LocalBean
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Model
 public class AddressService implements IAddressService {
 
 	/** The em. */
@@ -33,11 +38,10 @@ public class AddressService implements IAddressService {
 
 	/**
 	 * Creates the distrito.
-	 * 
-	 * @param d
-	 *            the d
-	 * @throws PreexistingEntityException
-	 *             , Exception
+	 *
+	 * @param d the d
+	 * @throws PreexistingEntityException , Exception
+	 * @throws Exception the exception
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createDistrito(Distrito d) throws PreexistingEntityException,
@@ -50,7 +54,18 @@ public class AddressService implements IAddressService {
 						+ " already exists.", ex);
 			}
 			throw ex;
-		} 
+		}
+	}
+
+
+	/**
+	 * Edits the distrito.
+	 *
+	 * @param d the d
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void editDistrito(Distrito d) {
+		em.merge(d);
 	}
 
 	/*
@@ -78,23 +93,35 @@ public class AddressService implements IAddressService {
 
 	/**
 	 * Creates the concelho.
-	 * 
-	 * @param c
-	 *            the c
+	 *
+	 * @param c the c
+	 * @throws PreexistingEntityException the preexisting entity exception
+	 * @throws Exception the exception
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createConcelho(Concelho c) throws PreexistingEntityException,
 			Exception {
-		try {
+//		try {
 			em.persist(c);
-		} catch (Exception ex) {
-			if (c.getId() != null && lookupConcelhoById(c.getId().getIdDistrito(), c.getId()
-					.getIdConcelho()) != null) {
-				throw new PreexistingEntityException("Concelho " + c.toString()
-						+ " already exists.", ex);
-			}
-			throw ex;
-		} 
+//		} catch (Exception ex) {
+//			if (c.getId() != null
+//					&& lookupConcelhoById(c.getId().getIdDistrito(), c.getId()
+//							.getIdConcelho()) != null) {
+//				throw new PreexistingEntityException("Concelho " + c.toString()
+//						+ " already exists.", ex);
+//			}
+//			throw ex;
+//		}
+	}
+	
+	/**
+	 * Edits the concelho.
+	 *
+	 * @param c the c
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void editConcelho(Concelho c){
+		em.merge(c);
 	}
 
 	/*
@@ -120,12 +147,10 @@ public class AddressService implements IAddressService {
 		ConcelhoPK id = new ConcelhoPK(idDistrito, idConcelho);
 		return (Concelho) em.find(Concelho.class, id);
 	}
-	
-	/**
-	 * Creates the localidade.
-	 * 
-	 * @param l
-	 *            the l
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#createLocalidade(org.tamarillo.addressws.entity.Localidade)
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createLocalidade(Localidade l)
@@ -133,16 +158,28 @@ public class AddressService implements IAddressService {
 		try {
 			em.persist(l);
 		} catch (Exception ex) {
-			if (l.getId() != null && lookupLocalidadeById(l.getId().getIdDistrito(), l.getId()
-					.getIdConcelho(),l.getId().getIdLocalidade()) != null) {
-				throw new PreexistingEntityException("Localidade " + l.toString()
-						+ " already exists.", ex);
+			if (l.getId() != null
+					&& lookupLocalidadeById(l.getId().getIdDistrito(), l
+							.getId().getIdConcelho(), l.getId()
+							.getIdLocalidade()) != null) {
+				throw new PreexistingEntityException("Localidade "
+						+ l.toString() + " already exists.", ex);
 			}
 			throw ex;
-		} 
+		}
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#editLocalidade(org.tamarillo.addressws.entity.Localidade)
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void editLocalidade(Localidade l){
+		em.merge(l);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.tamarillo.addressws.service.IAddressService#listAllLocalidade()
 	 */
 	@Override
@@ -159,20 +196,30 @@ public class AddressService implements IAddressService {
 	 * .lang.String, java.lang.String)
 	 */
 	@Override
-	public Localidade lookupLocalidadeById(String idDistrito, String idConcelho, String idLocalidade) {
+	public Localidade lookupLocalidadeById(String idDistrito,
+			String idConcelho, String idLocalidade) {
 		LocalidadePK id = new LocalidadePK(idDistrito, idConcelho, idLocalidade);
 		return (Localidade) em.find(Localidade.class, id);
 	}
 
 	/**
 	 * Creates the arteria.
-	 * 
-	 * @param a
-	 *            the a
+	 *
+	 * @param a the a
+	 * @throws PreexistingEntityException the preexisting entity exception
+	 * @throws Exception the exception
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void createArteria(Arteria a) {
+	public void createArteria(Arteria a) throws PreexistingEntityException, Exception {
 		em.persist(a);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#editArteria(org.tamarillo.addressws.entity.Arteria)
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void editArteria(Arteria a){
+		em.merge(a);
 	}
 
 	/**
@@ -184,6 +231,107 @@ public class AddressService implements IAddressService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createCodigoPostal(CodigoPostal cp) {
 		em.persist(cp);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupDistritoByName(java.lang.String)
+	 */
+	@Override
+	public Distrito lookupDistritoByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupConcelhoByName(java.lang.String)
+	 */
+	@Override
+	public Concelho lookupConcelhoByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupLocalidadeByName(java.lang.String)
+	 */
+	@Override
+	public Localidade lookupLocalidadeByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#listAllArteria()
+	 */
+	@Override
+	public List<Arteria> listAllArteria() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupArteriaById(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Arteria lookupArteriaById(String idDistrito, String idConcelho,
+			String idLocalidade, String idArteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupArteriaByName(java.lang.String)
+	 */
+	@Override
+	public Arteria lookupArteriaByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#listAllCodigosPostais()
+	 */
+	@Override
+	public List<CodigoPostal> listAllCodigosPostais() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupCodigoPostalById(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public CodigoPostal lookupCodigoPostalById(String cp4, String cp3) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#lookupCodigoPostalByName(java.lang.String)
+	 */
+	@Override
+	public CodigoPostal lookupCodigoPostalByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see org.tamarillo.addressws.service.IAddressService#searchAddressByQuery(java.lang.String)
+	 */
+	@Override
+	public CodigoPostal searchAddressByQuery(String query) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

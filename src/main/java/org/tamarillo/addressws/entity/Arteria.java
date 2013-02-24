@@ -66,55 +66,55 @@ public class Arteria implements IEntity, Serializable {
 	
 	/** The arteria type. */
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "arteria_type")
 	private String arteriaType;
 
 	/** The first prep. */
 	@Size(min = 1, max = 8)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "first_prep")
 	private String firstPrep;
 
 	/** The arteria title. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "arteria_title")
 	private String arteriaTitle;
 
 	/** The second prep. */
 	@Size(min = 1, max = 8)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "second_prep")
 	private String secondPrep;
 
 	/** The arteria name. */
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "arteria_name")
 	private String arteriaName;
 
 	/** The arteria local. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "arteria_local")
 	private String arteriaLocal;
 
 	/** The troco. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "troco")
 	private String troco;
 
 	/** The porta. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "porta")
 	private String porta;
 
 	/** The cliente. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "cliente")
 	private String cliente;
 	
@@ -124,6 +124,16 @@ public class Arteria implements IEntity, Serializable {
 	@XmlTransient
 	//@XmlJavaTypeAdapter(TimestampAdapter.class)
 	private Timestamp version;
+	
+	/** The cp4. */
+	@Pattern(regexp = "\\d{4}", message = "must contain only numbers")
+	@Column(name = "cp4")
+	private String cp4;
+
+	/** The cp3. */
+	@Pattern(regexp = "\\d{3}", message = "must contain only numbers")
+	@Column(name = "cp3")
+	private String cp3;
 	
 	
 	/* ********************************* */

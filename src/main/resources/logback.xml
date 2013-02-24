@@ -28,7 +28,9 @@
         </connectionSource>
     </appender>
     -->
-   
+    
+    <logger name="log4j.logger.org.hibernate.type" level="trace" additivity="false" />
+    
     <root level="info">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />

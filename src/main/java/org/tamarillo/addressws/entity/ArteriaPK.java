@@ -22,6 +22,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -35,25 +36,29 @@ public class ArteriaPK implements Serializable {
 	/** The id distrito. */
 	@Column(name = "id_distrito")
 	@NotNull
-	@Pattern(regexp = "[0-9][0-9]", message = "must contain only 2 numbers")
+	@Size(max = 2)
+	@Pattern(regexp = "\\d{2}", message = "must contain only 2 numbers")
 	private String idDistrito;
 
 	/** The id concelho. */
 	@NotNull
 	@Column(name = "id_concelho")
-	@Pattern(regexp = "[0-9][0-9]", message = "must contain only 2 numbers")
+	@Size(max = 2)
+	@Pattern(regexp = "\\d{2}", message = "must contain only 2 numbers")
 	private String idConcelho;
 
 	/** The id localidade. */
 	@NotNull
 	@Column(name = "id_localidade")
-	@Pattern(regexp = "\\d{3,5}", message = "must contain only 4 letters and/or numbers")
+	@Size(max = 5)
+	@Pattern(regexp = "\\d{3,5}", message = "must contain 3 to 5 numbers")
 	private String idLocalidade;
 	
 	/** The id arteria. */
 	@NotNull
 	@Column(name = "id_arteria")
-	@Pattern(regexp = "\\d{5,10}*", message = "must contain only letters and numbers")
+	@Size(max = 10)
+	@Pattern(regexp = "\\d{5,10}", message = "must contain 5 to 10 numbers")
 	private String idArteria;
 	
 	/**

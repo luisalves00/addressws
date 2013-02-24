@@ -70,7 +70,7 @@ public class Concelho implements IEntity, Serializable {
 	/** The name. */
 	@NotNull
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "name")
 	private String name;
 
@@ -80,6 +80,16 @@ public class Concelho implements IEntity, Serializable {
 	// @XmlJavaTypeAdapter(TimestampAdapter.class)
 	@XmlTransient
 	private Timestamp version;
+	
+	/** The cp4. */
+	@Pattern(regexp = "\\d{4}", message = "must contain only numbers")
+	@Column(name = "cp4")
+	private String cp4;
+
+	/** The cp3. */
+	@Pattern(regexp = "\\d{3}", message = "must contain only numbers")
+	@Column(name = "cp3")
+	private String cp3;
 
 	/* ********************************* */
 	/* ******** Relationship *********** */
@@ -87,7 +97,7 @@ public class Concelho implements IEntity, Serializable {
 
 	/** The distrito. */
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+	@JoinColumn(name = "id_distrito", referencedColumnName = "id", insertable = false, updatable = false)
 	private Distrito distrito;
 
 
@@ -221,13 +231,11 @@ public class Concelho implements IEntity, Serializable {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Concelho [id=" + id + "]";
+		return "Concelho [id=" + id + ", name=" + name + ", version=" + version
+				+ ", distrito=" + distrito + ", localidades=" + localidades
+				+ "]";
 	}
+
 }

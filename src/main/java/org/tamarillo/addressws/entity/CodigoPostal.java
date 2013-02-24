@@ -20,6 +20,7 @@ package org.tamarillo.addressws.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -63,7 +64,7 @@ public class CodigoPostal implements IEntity, Serializable {
 
 	/** The cpalf. */
 	@Size(min = 1, max = 30)
-	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç]*", message = "must contain only letters and spaces")
+	@Pattern(regexp = "[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	@Column(name = "cpalf")
 	private String cpalf;
 	
@@ -78,14 +79,14 @@ public class CodigoPostal implements IEntity, Serializable {
 	/* ******** Relationship *********** */
 	/* ********************************* */
 	
-	/** The arteria. */
-	@OneToOne(mappedBy = "codigoPostal")
-    private Arteria arteria;
-	
 	/** The localidade. */
-	@OneToOne(mappedBy = "codigoPostal")
-    private Arteria localidade;
+	@OneToOne(mappedBy = "codigoPostal", cascade = CascadeType.ALL)
+    private Localidade localidade;
 	
+	/** The arteria. */
+	@OneToOne(mappedBy = "codigoPostal", cascade = CascadeType.ALL)
+    private Arteria arteria;
+
 	/**
 	 * Gets the cpalf.
 	 *
@@ -162,7 +163,7 @@ public class CodigoPostal implements IEntity, Serializable {
 	 *
 	 * @return the localidade
 	 */
-	public Arteria getLocalidade() {
+	public Localidade getLocalidade() {
 		return localidade;
 	}
 
@@ -171,7 +172,7 @@ public class CodigoPostal implements IEntity, Serializable {
 	 *
 	 * @param localidade the new localidade
 	 */
-	public void setLocalidade(Arteria localidade) {
+	public void setLocalidade(Localidade localidade) {
 		this.localidade = localidade;
 	}
 

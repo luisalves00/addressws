@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -21,35 +21,38 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.annotations.providers.jaxb.json.BadgerFish;
+import org.tamarillo.addressws.entity.Arteria;
+import org.tamarillo.addressws.entity.CodigoPostal;
 import org.tamarillo.addressws.entity.Concelho;
-import org.tamarillo.addressws.entity.ConcelhoPK;
 import org.tamarillo.addressws.entity.Distrito;
 import org.tamarillo.addressws.entity.Localidade;
 import org.tamarillo.addressws.service.IAddressService;
-import org.tamarillo.addressws.service.impl.AddressService;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class DistritoResourceRESTService.
  */
 @Path("/address")
 @RequestScoped
-public class AddressRESTService implements IAddressService {
+public class AddressRESTService {
 
+	/** The address service. */
 	@Inject
-	private AddressService addressService;
+	private IAddressService addressService;
 
-
-	/* (non-Javadoc)
-	 * @see org.tamarillo.addressws.rest.IAddressService#listAllDistrito()
+	/**
+	 * List all distrito.
+	 *
+	 * @return the list
 	 */
 	@BadgerFish
 	@GET
@@ -59,19 +62,39 @@ public class AddressRESTService implements IAddressService {
 		return addressService.listAllDistrito();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.tamarillo.addressws.rest.IAddressService#lookupDistritoById(java.lang.String)
+
+	/**
+	 * Lookup distrito by id.
+	 *
+	 * @param id the id
+	 * @return the distrito
 	 */
 	@BadgerFish
 	@GET
-	@Path("/distritos/{id:[a-zA-Z0-9][a-zA-Z0-9]}")
+	@Path("/distritos/{id:\\d{2}}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Distrito lookupDistritoById(@PathParam("id") String id) {
 		return addressService.lookupDistritoById(id);
 	}
+	
+	/**
+	 * Lookup distrito by name.
+	 *
+	 * @param name the name
+	 * @return the distrito
+	 */
+	@BadgerFish
+	@GET
+	@Path("/distritos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Distrito lookupDistritoByName(@PathParam("name") String name) {
+		return addressService.lookupDistritoByName(name);
+	}
 
-	/* (non-Javadoc)
-	 * @see org.tamarillo.addressws.rest.IAddressService#listAllConcelho()
+	/**
+	 * List all concelho.
+	 *
+	 * @return the list
 	 */
 	@BadgerFish
 	@GET
@@ -82,30 +105,180 @@ public class AddressRESTService implements IAddressService {
 	}
 
 
-	
-	/* (non-Javadoc)
-	 * @see org.tamarillo.addressws.rest.IAddressService#lookupConcelhoById(java.lang.String, java.lang.String)
+	/**
+	 * Lookup concelho by id.
+	 *
+	 * @param idDistrito the id distrito
+	 * @param idConcelho the id concelho
+	 * @return the concelho
 	 */
 	@BadgerFish
 	@GET
-	@Path("/distritos/{iddistrito:[a-zA-Z0-9][a-zA-Z0-9]}/{idconcelho:[a-zA-Z0-9][a-zA-Z0-9]}")
+	@Path("/distritos/{idDistrito:\\d{2}}/{idConcelho:\\d{2}}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Concelho lookupConcelhoById(@PathParam("idDistrito") String idDistrito,@PathParam("idConcelho") String idConcelho) {
 		return addressService.lookupConcelhoById(idDistrito, idConcelho);
 	}
-
-	@Override
-	public List<Localidade> listAllLocalidade() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	/**
+	 * Lookup concelho by name.
+	 *
+	 * @param name the name
+	 * @return the concelho
+	 */
+	@BadgerFish
+	@GET
+	@Path("/concelhos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Concelho lookupConcelhoByName(@PathParam("name") String name) {
+		return addressService.lookupConcelhoByName(name);
 	}
 
-	@Override
-	public Localidade lookupLocalidadeById(String idDistrito,
-			String idConcelho, String idLocalidade) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * List all localidade.
+	 *
+	 * @return the list
+	 */
+	@BadgerFish
+	@GET
+	@Path("/localidades")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Localidade> listAllLocalidade() {
+		return addressService.listAllLocalidade();
+	}
+
+	/**
+	 * Lookup localidade by id.
+	 *
+	 * @param idDistrito the id distrito
+	 * @param idConcelho the id concelho
+	 * @param idLocalidade the id localidade
+	 * @return the localidade
+	 */
+	@BadgerFish
+	@GET
+	@Path("/localidades/{idDistrito:\\d{2}}/{idConcelho:\\d{2}}/{idLocalidade:\\d{3,5}}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Localidade lookupLocalidadeById(@PathParam("idDistrito") String idDistrito,
+			@PathParam("idConcelho") String idConcelho,@PathParam("idLocalidade") String idLocalidade) {
+		return addressService.lookupLocalidadeById(idDistrito, idConcelho, idLocalidade);
 	}
 	
+	/**
+	 * Lookup localidade by name.
+	 *
+	 * @param name the name
+	 * @return the localidade
+	 */
+	@BadgerFish
+	@GET
+	@Path("/localidades/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Localidade lookupLocalidadeByName(@PathParam("name") String name) {
+		return addressService.lookupLocalidadeByName(name);
+	}
+	
+	
+	/**
+	 * List all arteria.
+	 *
+	 * @return the list
+	 */
+	@BadgerFish
+	@GET
+	@Path("/arterias")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<Arteria> listAllArteria() {
+		return addressService.listAllArteria();
+	}
+
+	/**
+	 * Lookup arteria by id.
+	 *
+	 * @param idDistrito the id distrito
+	 * @param idConcelho the id concelho
+	 * @param idLocalidade the id localidade
+	 * @param idArteria the id arteria
+	 * @return the arteria
+	 */
+	@BadgerFish
+	@GET
+	@Path("/arterias/{idDistrito:\\d{2}}/{idConcelho:\\d{2}}/{idLocalidade:\\d{3,5}}/{idArteria:\\d{5,10}}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Arteria lookupArteriaById(@PathParam("idDistrito") String idDistrito,
+			@PathParam("idConcelho") String idConcelho,@PathParam("idLocalidade") String idLocalidade, @PathParam("idArteria") String idArteria) {
+		return addressService.lookupArteriaById(idDistrito, idConcelho, idLocalidade, idArteria);
+	}
+	
+	/**
+	 * Lookup arteria by name.
+	 *
+	 * @param name the name
+	 * @return the arteria
+	 */
+	@BadgerFish
+	@GET
+	@Path("/arterias/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public Arteria lookupArteriaByName(@PathParam("name") String name) {
+		return addressService.lookupArteriaByName(name);
+	}
+	
+	/**
+	 * List all codigos postais.
+	 *
+	 * @return the list
+	 */
+	@BadgerFish
+	@GET
+	@Path("/cp")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public List<CodigoPostal> listAllCodigosPostais() {
+		return addressService.listAllCodigosPostais();
+	}
+
+	/**
+	 * Lookup codigo postal by id.
+	 *
+	 * @param cp4 the cp4
+	 * @param cp3 the cp3
+	 * @return the codigo postal
+	 */
+	@BadgerFish
+	@GET
+	@Path("/cp/{cp4:\\d{4}}/{cp3:\\d{3}}")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public CodigoPostal lookupCodigoPostalById(@PathParam("cp4") String cp4,
+			@PathParam("cp3") String cp3) {
+		return addressService.lookupCodigoPostalById(cp4,cp3);
+	}
+	
+	/**
+	 * Lookup codigo postal by name.
+	 *
+	 * @param name the name
+	 * @return the codigo postal
+	 */
+	@BadgerFish
+	@GET
+	@Path("/cp/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public CodigoPostal lookupCodigoPostalByName(@PathParam("name") String name) {
+		return addressService.lookupCodigoPostalByName(name);
+	}
+	
+	/**
+	 * Search address.
+	 *
+	 * @param query the query
+	 * @return the codigo postal
+	 */
+	@BadgerFish
+	@GET
+	@Path("/cp/search")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public CodigoPostal searchAddressByQuery(@QueryParam("query") String query) {
+		return addressService.searchAddressByQuery(query);
+	}
 	
 }

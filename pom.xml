@@ -34,7 +34,7 @@
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Repository Group</name>
-			<url>http://http://repository.jboss.org/nexus/content/groups/public/</url>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
@@ -91,29 +91,27 @@
 		<!-- First declare the APIs we depend on and need for compilation. All 
 			of them are provided by JBoss AS 7 -->
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
 		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!-- <dependency> <groupId>javax.enterprise</groupId> <artifactId>cdi-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
 			as the API is included in JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.annotation</groupId> <artifactId>jboss-annotations-api_1.1_spec</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- Import the JAX-RS API, we use provided scope as the API is included 
 			in JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ws.rs</groupId>
-			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.ws.rs</groupId> <artifactId>jboss-jaxrs-api_1.1_spec</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- Use Jettison instead of Jackson -->
 		<dependency>
@@ -137,35 +135,18 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Import Mojarra and EL-->
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.1.17</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-			<version>2.2</version>
-		</dependency>
-
+		<!-- Security (Picketbox) -->
+		<!-- TODO -->
 
 		<!-- Import the JPA API, we use provided scope as the API is included in 
 			JBoss AS 7 -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.hibernate.javax.persistence</groupId> <artifactId>hibernate-jpa-2.0-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- Import the EJB API, we use provided scope as the API is included in 
 			JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.ejb</groupId> <artifactId>jboss-ejb-api_3.1_spec</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
@@ -187,12 +168,9 @@
 
 		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
 			typesafe criteria queries -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>1.1.1.Final</version>
-			<scope>provided</scope>
-		</dependency>
+		<!-- FIXME - why this doens't compile?!?! -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+			<version>1.1.1.Final</version> <scope>provided</scope> </dependency> -->
 
 		<!-- Lucene -->
 		<dependency>
@@ -229,11 +207,17 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
 		<!-- Add primefaces and extensions power -->
 		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>3.4.2</version>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-extensions</artifactId>
+			<version>0.6.2</version>
 		</dependency>
 
 		<dependency>
@@ -262,13 +246,17 @@
 			<version>0.9.3.RELEASE</version>
 		</dependency>
 
+		<!-- Mysql Connector -->
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<version>5.1.21</version> </dependency> -->
+
 		<!-- Richfaces Bootstrap -->
 		<!-- <dependency> <groupId>org.richfaces.sandbox.ui.bootstrap</groupId> 
 			<artifactId>bootstrap-ui</artifactId> <version>4.3.0-SNAPSHOT</version> </dependency> -->
 
-		<!-- Mysql Connector -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.1.21</version> </dependency> -->
+		<!-- ************************************************** -->
+		<!-- *************** Test Dependencies **************** -->
+		<!-- ************************************************** -->
 
 		<!-- Needed for running tests (you may also use TestNG) -->
 		<dependency>
@@ -354,8 +342,13 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<!-- http://docs.jboss.org/hibernate/jpamodelgen/1.2/reference/en-US/html_single/#d0e265 -->
+					<!-- FIXME -->
+					<!-- <processors> <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor> 
+						</processors> -->
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>

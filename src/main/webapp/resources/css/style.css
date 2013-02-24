@@ -371,5 +371,5 @@ px
 /* growl position*/
 .ui-growl {
 	left: 5%;
-	top: 90%;
+	top: 85% !important;
 }

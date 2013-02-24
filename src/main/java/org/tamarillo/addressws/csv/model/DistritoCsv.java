@@ -33,11 +33,11 @@ public class DistritoCsv implements Serializable {
 	private static final long serialVersionUID = 4237230490548320019L;
 
 	/** The id. */
-	@CsvField(pos = 1)
+	@CsvField(pos = 1, required=true) //, constraints = "pattern=\\d{2}")
 	private String id;
 
 	/** The name. */
-	@CsvField(pos = 2)
+	@CsvField(pos = 2, required=true) //, constraints = "pattern=[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*
 	private String name;
 
 

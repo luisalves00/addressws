@@ -43,12 +43,12 @@ public class CodigoPostalPK implements Serializable {
 	private static final long serialVersionUID = -4632943880446394426L;
 
 	/** The cp4. */
-	@Pattern(regexp = "[0-9][0-9][0-9][0-9]", message = "must contain only numbers")
+	@Pattern(regexp = "\\d{4}", message = "must contain only numbers")
 	@Column(name = "cp4")
 	private String cp4;
 
 	/** The cp3. */
-	@Pattern(regexp = "[0-9][0-9][0-9]", message = "must contain only numbers")
+	@Pattern(regexp = "\\d{3}", message = "must contain only numbers")
 	@Column(name = "cp3")
 	private String cp3;
 
@@ -66,7 +66,7 @@ public class CodigoPostalPK implements Serializable {
 	 */
 	public CodigoPostalPK(String cp4, String cp3) {
 		this.cp4 = cp4;
-		this.cp4 = cp3;
+		this.cp3 = cp3;
 	}
 
 	/**

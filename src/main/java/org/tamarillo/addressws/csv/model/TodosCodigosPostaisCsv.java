@@ -32,23 +32,23 @@ public class TodosCodigosPostaisCsv implements Serializable {
 	private static final long serialVersionUID = -8159309854352657548L;
 	
 	/** The id distrito. */
-	@CsvField(pos = 1)
+	@CsvField(pos = 1 , required=true, constraints = "pattern=\\d{2}")
 	private String idDistrito;
 
 	/** The id concelho. */
-	@CsvField(pos = 2)
+	@CsvField(pos = 2,  required=true, constraints = "pattern=\\d{2}")
 	private String idConcelho;
 	
 	/** The id localidade. */
-	@CsvField(pos = 3)
+	@CsvField(pos = 3,  required=true, constraints = "pattern=\\d{3,5}")
 	private String idLocalidade;
 	
 	/** The localidade name. */
-	@CsvField(pos = 4)
+	@CsvField(pos = 4, required=true, constraints = "pattern=[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
 	private String localidadeName;
 	
 	/** The id arteria. */
-	@CsvField(pos = 5)
+	@CsvField(pos = 5, constraints = "pattern=\\d{5,10}") 
 	private String idArteria;
 	
 	/** The arteria type. */
@@ -88,11 +88,11 @@ public class TodosCodigosPostaisCsv implements Serializable {
 	private String cliente;
 	
 	/** The cp4. */
-	@CsvField(pos = 15)
+	@CsvField(pos = 15, required = true, constraints="pattern=\\d{4}")
 	private String cp4;
 
 	/** The cp3. */
-	@CsvField(pos = 16)
+	@CsvField(pos = 16, required = true, constraints="pattern=\\d{3}")
 	private String cp3;
 	
 	/** The cpalf. */
