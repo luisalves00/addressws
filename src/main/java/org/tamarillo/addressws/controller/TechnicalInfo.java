@@ -105,6 +105,8 @@ public class TechnicalInfo implements Serializable{
 
 		} catch (MissingResourceException e) {
 			log.warn("Resource bundle 'addressws' was not found!", e);
+		} catch (Exception e) {
+			log.warn("Runtime Exception!", e);
 		}
 	}
 

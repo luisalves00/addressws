@@ -81,10 +81,10 @@
 										<div class="pull-right">
 											<h:form id="language-form">
 												<p:selectOneMenu id="select-language-input"
-													value="#{language.selectedCountry}" effect="fade" var="c"
-													styleClass="language-selector" filter="true" 
-													filterMatchMode="startsWith" onchange="this.form.submit()">
-													<f:selectItems value="#{language.countries}" />
+													value="#{language.selectedCountry}" effect="fade" 
+													styleClass="language-selector" filter="true" var="c"
+													filterMatchMode="contains," onchange="this.form.submit()">
+													<f:selectItems value="#{language.countries}" var="country" itemLabel="#{country.label}" itemValue="#{country}" />
 
 													<p:column>
 														<img src="#{resource['images:blank.gif']}"
@@ -165,7 +165,7 @@
 		</div>
 
 		<!-- JavaScript at the bottom for fast page loading -->
-		<h:outputScript library="js" name="prime-jquery-fix.js" />
+		<!--   <h:outputScript library="js" name="prime-jquery-fix.js" /> -->
 
 		<!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
