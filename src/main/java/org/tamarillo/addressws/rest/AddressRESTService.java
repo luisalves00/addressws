@@ -41,7 +41,7 @@ import org.tamarillo.addressws.service.IAddressService;
 /**
  * The Class DistritoResourceRESTService.
  */
-@Path("/address")
+@Path("/api")
 @RequestScoped
 public class AddressRESTService {
 
@@ -85,9 +85,9 @@ public class AddressRESTService {
 	 */
 	@BadgerFish
 	@GET
-	@Path("/distritos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Path("/distritos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Distrito lookupDistritoByName(@PathParam("name") String name) {
+	public List<Distrito> lookupDistritoByName(@PathParam("name") String name) {
 		return addressService.lookupDistritoByName(name);
 	}
 
@@ -128,9 +128,9 @@ public class AddressRESTService {
 	 */
 	@BadgerFish
 	@GET
-	@Path("/concelhos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Path("/concelhos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Concelho lookupConcelhoByName(@PathParam("name") String name) {
+	public List<Concelho> lookupConcelhoByName(@PathParam("name") String name) {
 		return addressService.lookupConcelhoByName(name);
 	}
 
@@ -172,9 +172,9 @@ public class AddressRESTService {
 	 */
 	@BadgerFish
 	@GET
-	@Path("/localidades/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Path("/localidades/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Localidade lookupLocalidadeByName(@PathParam("name") String name) {
+	public List<Localidade> lookupLocalidadeByName(@PathParam("name") String name) {
 		return addressService.lookupLocalidadeByName(name);
 	}
 	
@@ -218,9 +218,9 @@ public class AddressRESTService {
 	 */
 	@BadgerFish
 	@GET
-	@Path("/arterias/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Path("/arterias/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Arteria lookupArteriaByName(@PathParam("name") String name) {
+	public List<Arteria> lookupArteriaByName(@PathParam("name") String name) {
 		return addressService.lookupArteriaByName(name);
 	}
 	
@@ -261,9 +261,9 @@ public class AddressRESTService {
 	 */
 	@BadgerFish
 	@GET
-	@Path("/cp/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@Path("/cp/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public CodigoPostal lookupCodigoPostalByName(@PathParam("name") String name) {
+	public List<CodigoPostal> lookupCodigoPostalByName(@PathParam("name") String name) {
 		return addressService.lookupCodigoPostalByName(name);
 	}
 	

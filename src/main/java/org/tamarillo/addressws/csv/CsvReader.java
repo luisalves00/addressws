@@ -11,10 +11,12 @@ import javax.inject.Named;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.commons.io.input.BOMInputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.jsefa.DeserializationException;
 import org.jsefa.Deserializer;
 import org.jsefa.csv.CsvIOFactory;
+import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.tamarillo.addressws.csv.model.ConcelhoCsv;
 import org.tamarillo.addressws.csv.model.DistritoCsv;
@@ -60,6 +62,60 @@ public class CsvReader implements Serializable {
 	private IAddressService addressService;
 
 	/**
+	 * Gets the input stream encoding.
+	 * 
+	 * @param is
+	 *            the is
+	 * @return the input stream encoding
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private String getInputStreamEncoding(InputStream is) throws IOException, RuntimeException {
+		byte[] buf = new byte[4096];
+
+		// detect charset (1)
+		UniversalDetector detector = new UniversalDetector(null);
+
+		// (2)
+		int nread;
+		
+		// check if the stream supports mark/reset methods
+		if (!is.markSupported()) {
+			throw new RuntimeException("Mark/Reset not supported!");
+		}
+		
+		while ((nread = is.read(buf)) > 0 && !detector.isDone()) {
+			detector.handleData(buf, 0, nread);
+		}
+		// (3)
+		detector.dataEnd();
+		// (4)
+		String encoding = detector.getDetectedCharset();
+		if (encoding != null) {
+			log.info("Detected encoding = " + encoding);
+		} else {
+			log.info("No encoding detected.");
+		}
+		// (5)
+		detector.reset();
+		is.reset();
+		return encoding;
+	}
+
+	/**
+	 * Gets the clean input stream.
+	 * 
+	 * @param is
+	 *            the is
+	 * @return the clean input stream
+	 */
+	private InputStream getCleanInputStream(InputStream is) {
+		// remove bom if exists
+		BOMInputStream bomCleanStream = new BOMInputStream(is);
+		return bomCleanStream;
+	}
+
+	/**
 	 * Handle distrito csv file.
 	 * 
 	 * @param is
@@ -68,7 +124,8 @@ public class CsvReader implements Serializable {
 	 *             the exception
 	 */
 	public void handleDistritoCsvFile(InputStream is) throws Exception {
-		LineIterator lineItr = IOUtils.lineIterator(is, "UTF-8");
+		LineIterator lineItr = IOUtils.lineIterator(getCleanInputStream(is),
+				getInputStreamEncoding(is));
 		Deserializer deserializer = CsvIOFactory.createFactory(
 				DistritoCsv.class).createDeserializer();
 		int lineNumber = 1;
@@ -115,7 +172,8 @@ public class CsvReader implements Serializable {
 	 *             the exception
 	 */
 	public void handleConcelhoCsvFile(InputStream is) throws Exception {
-		LineIterator lineItr = IOUtils.lineIterator(is, "UTF-8");
+		LineIterator lineItr = IOUtils.lineIterator(getCleanInputStream(is),
+				getInputStreamEncoding(is));
 		Deserializer deserializer = CsvIOFactory.createFactory(
 				ConcelhoCsv.class).createDeserializer();
 		int lineNumber = 1;
@@ -170,7 +228,8 @@ public class CsvReader implements Serializable {
 	 */
 	public void handleTodosCodigosPostaisCsvFile(InputStream is)
 			throws Exception {
-		LineIterator lineItr = IOUtils.lineIterator(is, "UTF-8");
+		LineIterator lineItr = IOUtils.lineIterator(getCleanInputStream(is),
+				getInputStreamEncoding(is));
 		Deserializer deserializer = CsvIOFactory.createFactory(
 				TodosCodigosPostaisCsv.class).createDeserializer();
 		int lineNumber = 1;
@@ -300,16 +359,19 @@ public class CsvReader implements Serializable {
 	 *            the inputstream
 	 * @return the int type
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public int selectFileType(InputStream is) throws IOException {
-		LineIterator lineItr = IOUtils.lineIterator(is, "UTF-8");
+		LineIterator lineItr = IOUtils.lineIterator(getCleanInputStream(is),
+				getInputStreamEncoding(is));
 		String line = lineItr.nextLine();
-		Integer d = selectFileTypeHelper(line, TodosCodigosPostaisCsv.class, ALL_POSTAL_CODE);
+		Integer d = selectFileTypeHelper(line, TodosCodigosPostaisCsv.class,
+				ALL_POSTAL_CODE);
 		if (d == null) {
 			Integer c = selectFileTypeHelper(line, ConcelhoCsv.class, COUNTY);
 			if (c == null) {
 				Integer a = selectFileTypeHelper(line, DistritoCsv.class,
-						 DISTRICT);
+						DISTRICT);
 				if (a != null) {
 					return a;
 				}
@@ -325,10 +387,13 @@ public class CsvReader implements Serializable {
 	/**
 	 * Select file type helper.
 	 * 
-	 * @param is
-	 *            the is
+	 * @param line
+	 *            the line
 	 * @param clazz
 	 *            the clazz
+	 * @param type
+	 *            the type
+	 * @return the integer
 	 */
 	private Integer selectFileTypeHelper(String line, Class<?> clazz, int type) {
 		Deserializer deserializer = CsvIOFactory.createFactory(clazz)

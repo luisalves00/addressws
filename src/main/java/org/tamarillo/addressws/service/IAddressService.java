@@ -171,7 +171,7 @@ public interface IAddressService {
 	 * @param name the name
 	 * @return the distrito
 	 */
-	public Distrito lookupDistritoByName(String name);
+	public List<Distrito> lookupDistritoByName(String name);
 
 	/**
 	 * Lookup concelho by name.
@@ -179,7 +179,7 @@ public interface IAddressService {
 	 * @param name the name
 	 * @return the concelho
 	 */
-	public Concelho lookupConcelhoByName(String name);
+	public List<Concelho> lookupConcelhoByName(String name);
 
 	/**
 	 * Lookup localidade by name.
@@ -187,7 +187,7 @@ public interface IAddressService {
 	 * @param name the name
 	 * @return the localidade
 	 */
-	public Localidade lookupLocalidadeByName(String name);
+	public List<Localidade> lookupLocalidadeByName(String name);
 
 	/**
 	 * List all arteria.
@@ -214,7 +214,7 @@ public interface IAddressService {
 	 * @param name the name
 	 * @return the arteria
 	 */
-	public Arteria lookupArteriaByName(String name);
+	public List<Arteria> lookupArteriaByName(String name);
 
 	/**
 	 * List all codigos postais.
@@ -238,7 +238,7 @@ public interface IAddressService {
 	 * @param name the name
 	 * @return the codigo postal
 	 */
-	public CodigoPostal lookupCodigoPostalByName(String name);
+	public List<CodigoPostal> lookupCodigoPostalByName(String name);
 
 	/**
 	 * Search address by query.

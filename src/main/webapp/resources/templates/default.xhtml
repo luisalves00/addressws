@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -9,149 +10,183 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]> <html class="no-js" lang="en"><![endif]-->
-<h:head>
-	<!-- Place favicon.ico -->
-	<link rel="icon" type="image/icon"
-		href="#{facesContext.externalContext.requestContextPath}/resources/icon/favicon.ico" />
 
-	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputStylesheet library="css" name="bootstrap.css" />
-	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
-	<h:outputStylesheet library="css" name="jquery.fancybox-1.3.4.css" />
-	<h:outputStylesheet library="css" name="responsive.css" />
+<f:view locale="#{language.selectedCountry.locale}">
 
-	<!-- google api fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:700'
-		rel='stylesheet' type='text/css' />
+	<h:head>
+		<!-- Place favicon.ico -->
+		<link rel="icon" type="image/icon"
+			href="#{facesContext.externalContext.requestContextPath}/resources/icon/favicon.ico" />
 
-	<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="flags.css" />
+		<h:outputStylesheet library="css" name="bootstrap.css" />
+		<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
+		<h:outputStylesheet library="css" name="jquery.fancybox-1.3.4.css" />
+		<h:outputStylesheet library="css" name="responsive.css" />
 
-	<title>#{msg['default.page.title']}</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="description" content="portuguese address webservice" />
-	<!-- Mobile viewport optimized: h5bp.com/viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- google api fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Lato:700'
+			rel='stylesheet' type='text/css' />
 
-</h:head>
+		<!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-
-<h:body id="top-section" data-spy="scroll" data-target="#topnav"
-	data-offset="70">
-
-	<p:growl id="messages" showDetail="true" autoUpdate="true"
-		showSummary="true" />
-
-	<div class="container">
-
-		<header>
-			<ui:insert name="header">
-				<!-- navbar -->
-				<div id="topnav" class="navbar navbar-fixed-top">
-					<div class="navbar-inner">
-						<div class="container">
-
-							<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-							<a class="btn btn-navbar" data-toggle="collapse"
-								data-target=".nav-collapse"> <span class="icon-bar"></span>
-								<span class="icon-bar"></span> <span class="icon-bar"></span>
-							</a>
-
-							<!-- Collapse - Everything you want hidden at 940px or less, place within here -->
-							<div class="nav-collapse">
-								<!-- Main nav -->
-								<ul class="nav">
-									<li class="active"><a href="#top-section">#{msg['page.top.title']}</a></li>
-									<li><a href="#example-section">#{msg['page.examples.title']}</a></li>
-									<li><a href="#info-section">#{msg['page.api.info.title']}</a></li>
-									<li><a href="#contact-section">#{msg['page.contact.title']}</a></li>
-								</ul>
-								<!-- ENDS main nav -->
+		<title>#{msg['default.page.title']}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="portuguese address webservice" />
+		<!-- Mobile viewport optimized: h5bp.com/viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-								<!-- social -->
-								<ul class="nav pull-right ">
-									<li class="divider-vertical"></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown">#{msg['page.social.title']}<b
-											class="caret"></b>
-									</a>
-										<ul class="dropdown-menu social-menu">
-											<li><a href="http://twitter.com/#!/ansimuz"><i
-													class="social-icon twitter"></i> Twitter</a></li>
-											<li><a
-												href="http://www.facebook.com/pages/Ansimuz/224538697564461"><i
-													class="social-icon facebook"></i> Facebook</a></li>
-											<li><a href="http://dribbble.com/ansimuz"><i
-													class="social-icon dribbble"></i> Dribbble</a></li>
-											<li><a href="http://forrst.com/people/ansimuz"><i
-													class="social-icon forrst"></i> forrst</a></li>
-											<li><a href="http://dribbble.com/ansimuz"><i
-													class="social-icon myspace"></i> My Space</a></li>
 
-											<li><a href="http://www.vimeo.com"><i
-													class="social-icon vimeo"></i> Vimeo</a></li>
-											<li><a href="http://www.youtube.com"><i
-													class="social-icon youtube"></i> Youtube</a></li>
-											<li><a href="http://www.vimeo.com"><i
-													class="social-icon tumblr"></i> Tumblr</a></li>
-										</ul></li>
-								</ul>
-								<!-- ENDS Social -->
+	</h:head>
+
+
+	<h:body id="top-section" data-spy="scroll" data-target="#topnav"
+		data-offset="70">
+
+		<p:growl id="messages" showDetail="true" autoUpdate="true"
+			showSummary="true" />
+
+		<div class="container">
+
+			<header>
+				<ui:insert name="header">
+					<!-- navbar -->
+					<div id="topnav" class="navbar navbar-fixed-top">
+						<div class="navbar-inner">
+							<div class="container">
+
+								<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+								<a class="btn btn-navbar" data-toggle="collapse"
+									data-target=".nav-collapse"> <span class="icon-bar"></span>
+									<span class="icon-bar"></span> <span class="icon-bar"></span>
+								</a>
+
+								<!-- Collapse - Everything you want hidden at 940px or less, place within here -->
+								<div class="nav-collapse">
+									<!-- Main nav -->
+									<ui:insert name="main-nav">
+										<ul class="nav">
+											<li class="active"><a href="#top-section">#{msg['page.top.title']}</a></li>
+											<li><a href="#example-section">#{msg['page.examples.title']}</a></li>
+											<li><a href="#info-section">#{msg['page.api.info.title']}</a></li>
+											<li><a href="#contact-section">#{msg['page.contact.title']}</a></li>
+										</ul>
+									</ui:insert>
+									<!-- ENDS main nav -->
+
+									<ui:insert name="language-selector">
+										<!-- language -->
+										<div class="pull-right">
+											<h:form id="language-form">
+												<p:selectOneMenu id="select-language-input"
+													value="#{language.selectedCountry}" effect="fade" var="c"
+													styleClass="language-selector" filter="true"
+													filterMatchMode="startsWith" onchange="this.form.submit()">
+													<f:selectItems value="#{language.countries}" />
+
+													<p:column>
+														<img src="#{resource['images:blank.gif']}"
+															class="flag #{c.flagCss}" alt="#{c.label}" />
+													</p:column>
+
+													<p:column styleClass="flag-column-size">
+														<h:outputText value="#{c.label}" />
+													</p:column>
+												</p:selectOneMenu>
+
+											</h:form>
+										</div>
+										<!-- ENDS language -->
+									</ui:insert>
+
+									<!-- social -->
+									<ul class="nav pull-right ">
+										<li class="divider-vertical"></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown">#{msg['page.social.title']}<b
+												class="caret"></b>
+										</a>
+											<ul class="dropdown-menu social-menu">
+												<li><a href="#"><i class="social-icon twitter"></i>
+														Twitter</a></li>
+												<li><a href="#"><i class="social-icon facebook"></i>
+														Facebook</a></li>
+												<li><a href="#"><i class="social-icon dribbble"></i>
+														Dribbble</a></li>
+												<li><a href="#"><i class="social-icon forrst"></i>
+														forrst</a></li>
+												<li><a href="#"><i class="social-icon myspace"></i>
+														My Space</a></li>
+
+												<li><a href="#"><i class="social-icon vimeo"></i>
+														Vimeo</a></li>
+												<li><a href="#"><i class="social-icon youtube"></i>
+														Youtube</a></li>
+												<li><a href="#"><i class="social-icon tumblr"></i>
+														Tumblr</a></li>
+											</ul></li>
+									</ul>
+									<!-- ENDS social -->
+
+								</div>
+								<!-- ENDS Collapse -->
 
 							</div>
-							<!-- ENDS Collapse -->
 
 						</div>
 					</div>
-				</div>
-				<!-- ENDS navbar -->
-			</ui:insert>
-		</header>
+					<!-- ENDS navbar -->
+				</ui:insert>
+			</header>
 
 
 
-		<!-- MAIN -->
-		<div id="main" role="main">
-			<ui:insert name="content">
-				<div class="hero-unit">
-					<h1>#{msg['project.missing.content']}</h1>
-					<p>#{msg['project.missing.content.detail']}</p>
-				</div>
-			</ui:insert>
+			<!-- MAIN -->
+			<div id="main" role="main">
+				<ui:insert name="content">
+					<div class="hero-unit">
+						<h1>#{msg['project.missing.content']}</h1>
+						<p>#{msg['project.missing.content.detail']}</p>
+					</div>
+				</ui:insert>
+			</div>
+			<!-- ENDS MAIN -->
+
+
+			<footer>
+				<ui:insert name="footer">
+					<hr />
+					<p>#{technicalInfo.technicalInfo}</p>
+				</ui:insert>
+			</footer>
+
 		</div>
-		<!-- ENDS MAIN -->
 
+		<!-- JavaScript at the bottom for fast page loading -->
+		<h:outputScript library="js" name="prime-jquery-fix.js" />
 
-		<footer>
-			<ui:insert name="footer">
-				<hr />
-				<p>#{technicalInfo.technicalInfo}</p>
-			</ui:insert>
-		</footer>
-
-	</div>
-
-	<!-- JavaScript at the bottom for fast page loading -->
-	<h:outputScript  library="js" name="prime-jquery-fix.js" />
-
-	<!-- All JavaScript at the bottom, except this Modernizr build.
+		<!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
-	<h:outputScript target="head" library="js" name="modernizr-2.5.3.min.js" />
+		<h:outputScript target="head" library="js"
+			name="modernizr-2.5.3.min.js" />
 
-	<!-- primefaces already include jquery -->
-	<!--  <h:outputScript library="js" name="jquery-1.7.1.min.js" /> -->
-	<!-- scripts concatenated and minified via build script -->
-	<h:outputScript library="js" name="plugins.js" />
-	<h:outputScript library="js" name="bootstrap-dropdown.js" />
-	<h:outputScript library="js" name="bootstrap-scrollspy.js" />
-	<h:outputScript library="js" name="bootstrap-tab.js" />
-	<h:outputScript library="js" name="bootstrap-collapse.js" />
-	<h:outputScript library="js" name="jquery.fancybox-1.3.4.pack.js" />
-	<h:outputScript library="js" name="form-validation.js" />
+		<!-- primefaces already include jquery -->
+		<!--  <h:outputScript library="js" name="jquery-1.7.1.min.js" /> -->
+		<!-- scripts concatenated and minified via build script -->
+		<h:outputScript library="js" name="plugins.js" />
+		<h:outputScript library="js" name="bootstrap-dropdown.js" />
+		<h:outputScript library="js" name="bootstrap-scrollspy.js" />
+		<h:outputScript library="js" name="bootstrap-tab.js" />
+		<h:outputScript library="js" name="bootstrap-collapse.js" />
+		<h:outputScript library="js" name="jquery.fancybox-1.3.4.pack.js" />
+		<h:outputScript library="js" name="form-validation.js" />
 
-	<h:outputScript library="js" name="custom.js" />
-	<!-- end scripts -->
+		<h:outputScript library="js" name="custom.js" />
+		<!-- end scripts -->
 
-</h:body>
+	</h:body>
+</f:view>
 </html>

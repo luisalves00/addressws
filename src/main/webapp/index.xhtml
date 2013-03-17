@@ -22,15 +22,15 @@
 					#{msg['page.examples.title']} <small>#{msg['page.examples.title.detail']}</small>
 				</h1>
 			</div>
-			
+
 			<p:tabMenu id="example-tabs" widgetVar="exampleTabs">
-				
-				<p:tab closable="true" title="Some Example" >
+
+				<p:tab closable="true" title="Some Example">
 					some content	
 				</p:tab>
-				
+
 			</p:tabMenu>
-			
+
 		</section>
 		<!-- ENDS examples -->
 
@@ -39,34 +39,89 @@
 		<section id="info-section" class="information">
 			<div class="page-header">
 				<h1>
-					#{msg['page.api.info.title']} <small>Learn everything about me</small>
+					#{msg['page.api.info.title']} <small>#{msg['page.api.info.title.detail']}</small>
 				</h1>
 			</div>
-			
-			<p:tabView id="info-tabs" widgetVar="infoTabs" styleClass="nav nav-pills">
-				
-				<p:tab id="concelho-api" title="Distrito API" >
-					Distrito API
+
+			<p:tabView id="info-tabs" widgetVar="infoTabs"
+				styleClass="nav nav-pills">
+
+				<p:tab id="distrito-api" title="#{msg['page.api.info.title.distrito']}">
+					<table>
+						<tbody>
+							<tr>
+								<th>#{msg['page.api.info.table.header.method']}</th>
+								<th>#{msg['page.api.info.table.header.url']}</th>
+								<th>#{msg['page.api.info.table.header.produces']}</th>
+								<th>#{msg['page.api.info.table.header.action']}</th>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/distritos</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.all.distritos']}</td>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/distritos/{id:\\d{2}}</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.distrito.by.id']}</td>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/distritos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.distrito.by.name']}</td>
+							</tr>
+						</tbody>
+					</table>
 				</p:tab>
-				
-				<p:tab id="concelho-api" title="Concelho API" >
-					Concelho API
+
+				<p:tab id="concelho-api" title="#{msg['page.api.info.title.concelho']}">
+					<table>
+						<tbody>
+							<tr>
+								<th>#{msg['page.api.info.table.header.method']}</th>
+								<th>#{msg['page.api.info.table.header.url']}</th>
+								<th>#{msg['page.api.info.table.header.produces']}</th>
+								<th>#{msg['page.api.info.table.header.action']}</th>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/concelhos</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.all.concelhos']}</td>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/concelhos/{idDistrito:\\d{2}}/{idConcelho:\\d{2}}</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.concelho.by.id']}</td>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>/api/concelhos/{name:[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç%)(-]*</td>
+								<td>#{msg['json.and.xml']}</td>
+								<td>#{msg['page.api.info.table.body.get.concelho.by.name']}</td>
+							</tr>
+						</tbody>
+					</table>
 				</p:tab>
-				
-				<p:tab id="concelho-api" title="Localidade API" >
+
+				<p:tab id="localidade-api" title="Localidade API">
 					Localidade API
 				</p:tab>
-				
-				<p:tab id="concelho-api" title="Arteria API" >
+
+				<p:tab id="arteria-api" title="Arteria API">
 					Arteria API
 				</p:tab>
-				
-				<p:tab id="concelho-api" title="Codigo Postal API" >
+
+				<p:tab id="cod-postal-api" title="Codigo Postal API">
 					Codigo Postal API
 				</p:tab>
-				
+
 			</p:tabView>
-			
+
 		</section>
 		<!-- ENDS info -->
 

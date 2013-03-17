@@ -81,15 +81,6 @@ public class Concelho implements IEntity, Serializable {
 	@XmlTransient
 	private Timestamp version;
 	
-	/** The cp4. */
-	@Pattern(regexp = "\\d{4}", message = "must contain only numbers")
-	@Column(name = "cp4")
-	private String cp4;
-
-	/** The cp3. */
-	@Pattern(regexp = "\\d{3}", message = "must contain only numbers")
-	@Column(name = "cp3")
-	private String cp3;
 
 	/* ********************************* */
 	/* ******** Relationship *********** */
