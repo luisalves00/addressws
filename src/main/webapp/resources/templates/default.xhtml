@@ -42,7 +42,7 @@
 	</h:head>
 
 
-	<h:body id="top-section" data-spy="scroll" data-target="#topnav"
+	<body id="top-section" data-spy="scroll" data-target="#topnav"
 		data-offset="70">
 
 		<p:growl id="messages" showDetail="true" autoUpdate="true"
@@ -82,7 +82,7 @@
 											<h:form id="language-form">
 												<p:selectOneMenu id="select-language-input"
 													value="#{language.selectedCountry}" effect="fade" var="c"
-													styleClass="language-selector" filter="true"
+													styleClass="language-selector" filter="true" 
 													filterMatchMode="startsWith" onchange="this.form.submit()">
 													<f:selectItems value="#{language.countries}" />
 
@@ -187,6 +187,6 @@
 		<h:outputScript library="js" name="custom.js" />
 		<!-- end scripts -->
 
-	</h:body>
+	</body>
 </f:view>
 </html>

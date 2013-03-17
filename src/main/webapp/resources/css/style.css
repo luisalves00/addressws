@@ -88,7 +88,7 @@ body h1,body h2,body h3,body h4,body h5,body h6 {
 }
 
 body section {
-	padding-top: 160px;
+	padding-top: 160px; 
 	padding-bottom: 160px;
 }
 
@@ -422,4 +422,13 @@ px
 .flag-column-size{
 	width: 25px;
 }
+
+.ui-selectonemenu-filter-container .ui-selectonemenu-filter{
+	width: 100% !important;
+}
+
+.ui-selectonemenu-filter-container .ui-icon{
+	right: -10px !important;	
+}
+
 
