@@ -368,6 +368,41 @@ px
 /* *********** Custom Primefaces*********** */
 /* **************************************** */
 
+/* rounder corners*/
+
+.ui-corner-all {
+    border-radius: 4px 4px 4px 4px !important;
+}
+
+.ui-corner-tl {
+    border-top-left-radius: 4px !important;
+}
+.ui-corner-tr {
+    border-top-right-radius: 4px !important;
+}
+.ui-corner-bl {
+    border-bottom-left-radius: 4px !important;
+}
+.ui-corner-br {
+    border-bottom-right-radius: 4px !important;
+}
+.ui-corner-top {
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+.ui-corner-bottom {
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+.ui-corner-right {
+    border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+.ui-corner-left {
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+}
+
 /* growl position*/
 .ui-growl {
 	left: 5%;
