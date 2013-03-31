@@ -463,6 +463,7 @@
 					<!-- Maven GIT commit id plugin -->
 					<!-- http://ovaraksin.blogspot.com/2012/02/advanced-injection-of-maven-properties.html -->
 					<!-- [DOC]https://github.com/ktoso/maven-git-commit-id-plugin -->
+					<!--  TODO: fix breakline
 					<plugin>
 						<groupId>pl.project13.maven</groupId>
 						<artifactId>git-commit-id-plugin</artifactId>
@@ -491,6 +492,7 @@
 						</configuration>
 
 					</plugin>
+					-->
 					<!-- END OF GIT COMMIT ID PLUGIN CONFIGURATION -->
 
 					<!-- Plugin to get the build number -->

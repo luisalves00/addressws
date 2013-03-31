@@ -22,10 +22,15 @@
 					#{msg['page.examples.title']} <small>#{msg['page.examples.title.detail']}</small>
 				</h1>
 			</div>
+			
+			<p:tabView id="example-tabs" widgetVar="exampleTabs"
+				styleClass="nav nav-pills">
 
-			<p:tabMenu id="example-tabs" widgetVar="exampleTabs">
-
-				<p:tab closable="true" title="Some Example">
+				<p:tab closable="true" title="#{msg['page.examples.with.primefaces.simple']}">
+					some content	
+				</p:tab>
+				
+				<p:tab closable="true" title="#{msg['page.examples.with.primefaces.ui.simple']}">
 					some content	
 				</p:tab>
 
