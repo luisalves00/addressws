@@ -1,9 +1,11 @@
 package org.tamarillo.addressws.service.impl;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
+import javax.ejb.StatefulTimeout;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
@@ -31,6 +33,7 @@ import org.tamarillo.addressws.service.IAddressService;
 @Stateful(name = "addressService")
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Model
+@StatefulTimeout(value = 360, unit = TimeUnit.SECONDS)
 public class AddressService implements IAddressService {
 
 	/** The em. */
