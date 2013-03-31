@@ -44,6 +44,9 @@
 
 	<body id="top-section" data-spy="scroll" data-target="#topnav"
 		data-offset="70">
+		<a class="visible-desktop" href="https://github.com/luisalves00/addressws">
+			<img class="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+		</a>
 
 		<p:growl id="messages" showDetail="true" autoUpdate="true"
 			showSummary="true" />
@@ -82,8 +85,8 @@
 											<h:form id="language-form">
 												<p:selectOneMenu id="select-language-input"
 													value="#{language.selectedCountry}" effect="fade" 
-													styleClass="language-selector" filter="true" var="c"
-													filterMatchMode="contains," onchange="this.form.submit()">
+													styleClass="language-selector" var="c"
+													onchange="this.form.submit()">
 													<f:selectItems value="#{language.countries}" var="country" itemLabel="#{country.label}" itemValue="#{country}" />
 
 													<p:column>
@@ -102,6 +105,7 @@
 									</ui:insert>
 
 									<!-- social -->
+									<ui:remove><!--  
 									<ul class="nav pull-right ">
 										<li class="divider-vertical"></li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -128,6 +132,7 @@
 														Tumblr</a></li>
 											</ul></li>
 									</ul>
+									--></ui:remove>
 									<!-- ENDS social -->
 
 								</div>

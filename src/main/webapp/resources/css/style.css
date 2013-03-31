@@ -413,6 +413,7 @@ px
 /* language selector layout*/
 .language-selector{
 	margin: 0.4em 0 0.2em 1em;
+	width: 150px !important;
 }
 
 .ui-selectonemenu-table td, tr{
@@ -429,6 +430,15 @@ px
 
 .ui-selectonemenu-filter-container .ui-icon{
 	right: -10px !important;	
+}
+
+/* fork me on git hub ribbon */
+.ribbon {
+    border: 0 none;
+    position: absolute;
+    right: 0;
+    top: 41px;
+    z-index: 1000;
 }
 
 
