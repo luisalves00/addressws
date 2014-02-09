@@ -49,7 +49,7 @@ public class AddressService implements IAddressService {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createDistrito(Distrito d) {
-			em.persist(d);
+		em.persist(d);
 	}
 
 
@@ -95,7 +95,7 @@ public class AddressService implements IAddressService {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void createConcelho(Concelho c) {
-			em.persist(c);
+		em.persist(c);
 	}
 	
 	/**

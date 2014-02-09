@@ -37,7 +37,7 @@ public class DistritoCsv implements Serializable {
 	private String id;
 
 	/** The name. */
-	@CsvField(pos = 2, required=true, constraints = "pattern=[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@CsvField(pos = 2, required=true, constraints = "pattern=[A-Za-z0-9 ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç'ºª)(.-]*")
 	private String name;
 
 

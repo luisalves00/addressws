@@ -40,11 +40,11 @@ public class TodosCodigosPostaisCsv implements Serializable {
 	private String idConcelho;
 	
 	/** The id localidade. */
-	@CsvField(pos = 3,  required=true, constraints = "pattern=\\d{3,5}")
+	@CsvField(pos = 3, required = true, constraints = "pattern=\\d{1,5}")
 	private String idLocalidade;
-	
+
 	/** The localidade name. */
-	@CsvField(pos = 4, required=true, constraints = "pattern=[A-Za-z ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç)(-]*")
+	@CsvField(pos = 4, required = true, constraints = "pattern=[A-Za-z0-9 ÁÂÀÃáâàãÊÈÉêèéÍÎÌíîìÓÔÒÕóôòõÚÛÙúûùÇç'ºª)(.-]*")
 	private String localidadeName;
 	
 	/** The id arteria. */
